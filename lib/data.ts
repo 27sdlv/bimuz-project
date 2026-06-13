@@ -60,7 +60,7 @@ export const projects = [
     hue: 210,
     tall: true,
     icon: "office",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    image: "/project_building.png",
   },
   {
     name: "example",
