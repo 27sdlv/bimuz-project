@@ -96,7 +96,7 @@ export const projects = [
     hue: 190,
     tall: false,
     icon: "mall",
-    image: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
   },
   {
     name: "example",
