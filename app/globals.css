@@ -1389,3 +1389,567 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---- Project BIM Badge ---- */
+.project-bim-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: rgba(74, 158, 255, 0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(74, 158, 255, 0.4);
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #7cc4ff;
+  text-transform: uppercase;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.project-bim-badge svg {
+  width: 11px;
+  height: 11px;
+  color: #4a9eff;
+}
+
+.project-card:hover .project-bim-badge {
+  background: rgba(74, 158, 255, 0.3);
+  border-color: rgba(74, 158, 255, 0.7);
+  color: #fff;
+}
+
+/* ---- BIM Modal Overlay ---- */
+.bim-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(5, 12, 22, 0.88);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: bimOverlayIn 0.25s ease;
+}
+
+@keyframes bimOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.bim-modal {
+  width: 100%;
+  max-width: 1280px;
+  height: calc(100vh - 32px);
+  max-height: 840px;
+  background: #0d1b2a;
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(74,158,255,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: bimModalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bimModalIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header */
+.bim-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid rgba(74, 158, 255, 0.12);
+  flex-shrink: 0;
+  background: rgba(10, 20, 35, 0.8);
+}
+
+.bim-modal-label {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #4a9eff;
+  margin-bottom: 4px;
+}
+
+.bim-modal-title {
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #f0f4f8;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.bim-modal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.78rem;
+  color: rgba(180, 200, 220, 0.7);
+}
+
+.bim-meta-sep {
+  color: rgba(74, 158, 255, 0.4);
+}
+
+.bim-modal-close {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-left: 16px;
+  margin-top: 2px;
+}
+
+.bim-modal-close:hover {
+  background: rgba(255,80,80,0.12);
+  border-color: rgba(255,80,80,0.3);
+  color: #ff6b6b;
+}
+
+.bim-modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Body */
+.bim-modal-body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 3D Viewer */
+.bim-viewer-wrap {
+  position: relative;
+  background: #070f1a;
+  overflow: hidden;
+}
+
+.bim-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bim-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #070f1a;
+  z-index: 10;
+  color: rgba(180, 200, 220, 0.7);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 32px;
+}
+
+.bim-load-pct {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: #4a9eff;
+}
+
+.bim-error {
+  color: rgba(255, 120, 100, 0.85);
+}
+
+.bim-error svg {
+  color: #ff6b6b;
+  opacity: 0.7;
+}
+
+.bim-error-hint {
+  font-size: 0.75rem;
+  color: rgba(180, 200, 220, 0.45);
+  max-width: 380px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.bim-error-hint code {
+  background: rgba(74, 158, 255, 0.12);
+  color: #7cc4ff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.72rem;
+}
+
+/* iFrame embed */
+.bim-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  background: #070f1a;
+}
+
+/* Placeholder (no file) */
+.bim-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: #070f1a;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.bim-placeholder-icon {
+  width: 72px;
+  height: 72px;
+  border: 1px solid rgba(74, 158, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(74, 158, 255, 0.5);
+  margin-bottom: 4px;
+}
+
+.bim-placeholder-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.bim-placeholder h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: rgba(240, 244, 248, 0.8);
+}
+
+.bim-placeholder > p {
+  font-size: 0.85rem;
+  color: rgba(180, 200, 220, 0.5);
+  margin-bottom: 8px;
+}
+
+.bim-placeholder-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.bim-placeholder-option {
+  padding: 14px 16px;
+  background: rgba(74, 158, 255, 0.05);
+  border: 1px solid rgba(74, 158, 255, 0.15);
+  border-left: 3px solid rgba(74, 158, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bim-placeholder-option strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #7cc4ff;
+  letter-spacing: 0.04em;
+}
+
+.bim-placeholder-option span {
+  font-size: 0.76rem;
+  color: rgba(180, 200, 220, 0.5);
+  line-height: 1.6;
+}
+
+.bim-placeholder-option code {
+  background: rgba(74, 158, 255, 0.1);
+  color: #9ed4ff;
+  padding: 1px 5px;
+  font-size: 0.7rem;
+  border-radius: 3px;
+}
+
+/* Keyword chips */
+.bim-kw-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.bim-kw-chip {
+  font-size: 0.62rem;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(180, 200, 220, 0.6);
+  border-radius: 2px;
+  font-family: monospace;
+  letter-spacing: 0.03em;
+}
+
+.bim-tab-kw-count {
+  margin-left: auto;
+  font-size: 0.6rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(180, 200, 220, 0.4);
+  padding: 1px 6px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* File info row */
+.bim-file-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  background: rgba(74, 158, 255, 0.04);
+  border: 1px solid rgba(74, 158, 255, 0.1);
+  margin-bottom: 16px;
+}
+
+.bim-file-type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(74, 158, 255, 0.6);
+}
+
+.bim-file-path {
+  font-size: 0.7rem;
+  color: rgba(180, 200, 220, 0.45);
+  font-family: monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bim-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(74, 158, 255, 0.15);
+  border-top-color: #4a9eff;
+  border-radius: 50%;
+  animation: bimSpin 0.9s linear infinite;
+}
+
+@keyframes bimSpin {
+  to { transform: rotate(360deg); }
+}
+
+.bim-viewer-hint {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  color: rgba(180,200,220,0.4);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* Sidebar */
+.bim-sidebar {
+  border-left: 1px solid rgba(74,158,255,0.12);
+  background: rgba(8,16,28,0.95);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 20px 18px;
+  gap: 0;
+}
+
+.bim-discipline-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(74,158,255,0.6);
+  margin-bottom: 12px;
+}
+
+.bim-discipline-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.bim-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  color: rgba(180,200,220,0.7);
+}
+
+.bim-tab:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: #f0f4f8;
+}
+
+.bim-tab.active {
+  background: var(--tab-bg, rgba(74,158,255,0.12));
+  border-color: var(--tab-color, #4a9eff);
+  color: #f0f4f8;
+}
+
+.bim-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bim-tab-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bim-tab-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.bim-tab-sub {
+  font-size: 0.66rem;
+  opacity: 0.55;
+  letter-spacing: 0.03em;
+}
+
+/* Discipline Info Card */
+.bim-discipline-info {
+  padding: 14px;
+  background: var(--info-bg, rgba(74,158,255,0.08));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid var(--info-color, #4a9eff);
+  margin-bottom: 20px;
+}
+
+.bim-discipline-info-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bim-discipline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bim-discipline-info h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f0f4f8;
+  letter-spacing: 0.04em;
+}
+
+.bim-discipline-info p {
+  font-size: 0.78rem;
+  color: rgba(180,200,220,0.65);
+  line-height: 1.7;
+}
+
+/* Project Stats */
+.bim-project-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bim-stat {
+  padding: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bim-stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(74,158,255,0.6);
+}
+
+.bim-stat-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #f0f4f8;
+  line-height: 1.3;
+}
+
+/* Responsive BIM Modal */
+@media (max-width: 768px) {
+  .bim-modal-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 55vw 1fr;
+  }
+
+  .bim-sidebar {
+    border-left: none;
+    border-top: 1px solid rgba(74,158,255,0.12);
+  }
+
+  .bim-discipline-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .bim-tab {
+    flex: 1 0 calc(50% - 4px);
+  }
+
+  .bim-project-stats {
+    grid-template-columns: repeat(4,1fr);
+  }
+
+  .bim-modal-title {
+    font-size: 1.05rem;
+  }
+}

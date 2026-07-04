@@ -52,62 +52,184 @@ export const services = [
   },
 ] as const;
 
-export const projects = [
+export type BimDiscipline = {
+  id: string;
+  label: string;
+  labelUz: string;
+  color: string;
+  accentColor: string;
+  description: string;
+  layerType: "architecture" | "structure" | "mep" | "facade" | "site";
+  /**
+   * Keywords matched against mesh/group names in the GLB file.
+   * If the mesh name contains any of these strings (case-insensitive),
+   * it is shown when this discipline tab is active.
+   * Leave empty to show ALL meshes for this discipline.
+   */
+  meshKeywords: string[];
+};
+
+export type Project = {
+  name: string;
+  category: string;
+  year: string;
+  hue: number;
+  tall: boolean;
+  icon: string;
+  image: string;
+  fullName: string;
+  location: string;
+  area: string;
+  floors: string;
+  disciplines: BimDiscipline[];
+  /**
+   * Path to a GLB/GLTF file inside /public/models/  → e.g. "/models/meridian.glb"
+   * Or a full https:// URL to embed in an <iframe> (Autodesk APS, Speckle, etc.)
+   * Leave undefined to show a placeholder viewer.
+   */
+  modelUrl?: string;
+};
+
+const defaultDisciplines: BimDiscipline[] = [
   {
-    name: "example",
+    id: "arxitektura",
+    label: "Arxitektura",
+    labelUz: "Architectural",
+    color: "#4a9eff",
+    accentColor: "rgba(74, 158, 255, 0.15)",
+    description: "Binoning arxitektura qismi — rejalar, fasadlar, kesimlar va ichki bo'shliqlar BIM formatida modellashtirilgan.",
+    layerType: "architecture",
+    // Match mesh names from Revit export — customize these per project
+    meshKeywords: ["arch", "wall", "floor", "ceiling", "roof", "door", "window", "room", "arxitektura"],
+  },
+  {
+    id: "konstruktisiya",
+    label: "Konstruktisiya",
+    labelUz: "Structural",
+    color: "#ff7043",
+    accentColor: "rgba(255, 112, 67, 0.15)",
+    description: "Konstruktiv tizimlar — poydevor, ustunlar, to'sinlar, plitalar va mustahkamlik hisob-kitoblari.",
+    layerType: "structure",
+    meshKeywords: ["struct", "column", "beam", "foundation", "slab", "frame", "konstruk", "poydevor"],
+  },
+  {
+    id: "mep",
+    label: "MEP",
+    labelUz: "Mechanical / Electrical / Plumbing",
+    color: "#66bb6a",
+    accentColor: "rgba(102, 187, 106, 0.15)",
+    description: "Muhandislik tizimlari — elektr, suv ta'minoti, isitish, ventilyatsiya va kanalizatsiya tarmoqlari.",
+    layerType: "mep",
+    meshKeywords: ["mep", "pipe", "duct", "electric", "hvac", "plumb", "mechanical", "sanitar", "elektr", "suv"],
+  },
+  {
+    id: "fasad",
+    label: "Fasad",
+    labelUz: "Facade & Envelope",
+    color: "#ab47bc",
+    accentColor: "rgba(171, 71, 188, 0.15)",
+    description: "Tashqi qobiq — oyna pardozlar, kompozit panellar, termal izolyatsiya va fasad sistemalari.",
+    layerType: "facade",
+    meshKeywords: ["fasad", "facade", "curtain", "glass", "cladding", "panel", "envelope", "oyna"],
+  },
+  {
+    id: "hudud",
+    label: "Hudud",
+    labelUz: "Site & Landscape",
+    color: "#ffa726",
+    accentColor: "rgba(255, 167, 38, 0.15)",
+    description: "Qurilish hududi — yo'llar, ko'kalamzorlashtirish, muhandislik tarmoqlari va peyzaj dizayni.",
+    layerType: "site",
+    meshKeywords: ["site", "road", "landscape", "tree", "ground", "terrain", "parking", "hudud", "yo'l"],
+  },
+];
+
+export const projects: Project[] = [
+  {
+    name: "Biznes Markaz «Meridian»",
     category: "Tijorat",
     year: "2024",
     hue: 210,
     tall: true,
     icon: "office",
     image: "/project_building.png",
+    fullName: "Biznes Markaz «Meridian»",
+    location: "Toshkent, Yunusobod tumani",
+    area: "18 400 m²",
+    floors: "22 qavat",
+    disciplines: defaultDisciplines,
   },
   {
-    name: "example",
+    name: "«Green Valley» Turar-Joy Majmuasi",
     category: "Turar-joy",
     year: "2023",
     hue: 180,
     tall: false,
     icon: "home",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    fullName: "«Green Valley» Turar-Joy Majmuasi",
+    location: "Toshkent, Chilonzor tumani",
+    area: "32 000 m²",
+    floors: "16 qavat × 4 blok",
+    disciplines: defaultDisciplines,
   },
   {
-    name: "example",
+    name: "Sanoat Korxonasi «TechPark»",
     category: "Sanoat",
     year: "2023",
     hue: 240,
     tall: false,
     icon: "factory",
     image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=800&auto=format&fit=crop",
+    fullName: "Sanoat Korxonasi «TechPark»",
+    location: "Angren, sanoat zonasi",
+    area: "8 700 m²",
+    floors: "3 qavat",
+    disciplines: defaultDisciplines,
   },
   {
-    name: "example",
+    name: "«Capital Tower» Ofis Binosi",
     category: "Tijorat",
     year: "2024",
     hue: 200,
     tall: true,
     icon: "building",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+    fullName: "«Capital Tower» Ofis Binosi",
+    location: "Toshkent, Mirobod tumani",
+    area: "25 600 m²",
+    floors: "32 qavat",
+    disciplines: defaultDisciplines,
   },
   {
-    name: "example",
+    name: "«Samarqand Mall» Savdo Markazi",
     category: "Tijorat",
     year: "2022",
     hue: 190,
     tall: false,
     icon: "mall",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+    fullName: "«Samarqand Mall» Savdo Markazi",
+    location: "Samarqand, Registon ko'chasi",
+    area: "41 200 m²",
+    floors: "5 qavat",
+    disciplines: defaultDisciplines,
   },
   {
-    name: "example",
+    name: "«Bosphorus» Apartamentlar",
     category: "Turar-joy",
     year: "2022",
     hue: 220,
     tall: false,
     icon: "apartment",
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop",
+    fullName: "«Bosphorus» Apartamentlar",
+    location: "Toshkent, Shayxontohur tumani",
+    area: "12 800 m²",
+    floors: "18 qavat",
+    disciplines: defaultDisciplines,
   },
-] as const;
+];
 
 export const processSteps = [
   {
