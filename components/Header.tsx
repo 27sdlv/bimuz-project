@@ -74,8 +74,13 @@ export default function Header() {
               <a
                 href={link.href}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
+                  if (link.href.startsWith("#")) {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  } else {
+                    setMenuOpen(false);
+                    document.body.style.overflow = "";
+                  }
                 }}
               >
                 {link.label}

@@ -1,8 +1,9 @@
 export const navLinks = [
   { href: "#about", label: "Biz haqimizda" },
   { href: "#services", label: "Xizmatlar" },
-  { href: "#projects", label: "Loyihalar" },
+  { href: "#projects", label: "Example" },
   { href: "#team", label: "Jamoa" },
+  { href: "https://talim.bimuz.uz", label: "Talim" },
   { href: "#contact", label: "Aloqa" },
 ] as const;
 
@@ -260,10 +261,10 @@ export const processSteps = [
 ] as const;
 
 export const teamMembers = [
-  { initials: "BK", name: "Bobur Karimov", role: "Bosh arxitektor" },
-  { initials: "DY", name: "Dilnoza Yusupova", role: "BIM menejeri" },
-  { initials: "JT", name: "Jasur Toshmatov", role: "Konstruktor" },
-  { initials: "KR", name: "Kamola Rahimova", role: "Vizualizator" },
+  { initials: "JD", name: "John Doe", role: "Bosh arxitektor" },
+  { initials: "JD", name: "John Doe", role: "BIM menejeri" },
+  { initials: "JD", name: "John Doe", role: "Konstruktor" },
+  { initials: "JD", name: "John Doe", role: "Vizualizator" },
 ] as const;
 
 export const testimonials = [
