@@ -73,6 +73,8 @@ export default function Header() {
             <li key={link.href}>
               <a
                 href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 onClick={(e) => {
                   if (link.href.startsWith("#")) {
                     e.preventDefault();
