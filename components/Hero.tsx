@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { stats } from "@/lib/data";
 import { scrollToSection } from "@/hooks/useScrollEffects";
 import { gsap, prefersReducedMotion, registerGsap } from "@/lib/gsap";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,6 +15,7 @@ export default function Hero() {
   const buttonsRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const statNumberRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const { t } = useTranslation();
 
   useGSAP(
     () => {
@@ -95,13 +97,13 @@ export default function Hero() {
       <div className="hero-content container">
         <div className="hero-text">
           <p className="hero-tagline" ref={taglineRef}>
-            BIM loyihalashda yangi standartlar
+            {t.hero.tagline}
           </p>
           <h1 className="hero-title" ref={titleRef}>
-            BimUz &mdash; Aniq hisob, Mukammal natija!
+            {t.hero.title}
           </h1>
           <p className="hero-subtitle" ref={subtitleRef}>
-            Har bir detalda aniqlik. Zamonaviy BIM yechimlari orqali arxitektura va muhandislik loyihalarini xatosiz, tez hamda yuqori sifatda amalga oshiramiz.
+            {t.hero.subtitle}
           </p>
           <div className="hero-buttons" ref={buttonsRef}>
             <a
@@ -112,7 +114,7 @@ export default function Hero() {
                 scrollToSection("#projects");
               }}
             >
-              Loyihalarimizni ko&apos;rish
+              {t.hero.viewProjects}
             </a>
             <a
               href="#contact"
@@ -122,7 +124,7 @@ export default function Hero() {
                 scrollToSection("#contact");
               }}
             >
-              Biz bilan bog&apos;lanish
+              {t.hero.contactUs}
             </a>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { navLinks } from "@/lib/data";
 import { scrollToSection, useScrollHeader } from "@/hooks/useScrollEffects";
 import { gsap, prefersReducedMotion, registerGsap } from "@/lib/gsap";
+import { useTranslation } from "@/hooks/useTranslation";
 import Logo from "./Logo";
 
 export default function Header() {
@@ -12,6 +13,7 @@ export default function Header() {
   const scrolled = useScrollHeader();
   const [menuOpen, setMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const { t, lang, setLang } = useTranslation();
 
   useGSAP(
     () => {
@@ -70,26 +72,36 @@ export default function Header() {
         </button>
 
         <ul className={`nav-links${menuOpen ? " open" : ""}`} id="navLinks">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                onClick={(e) => {
-                  if (link.href.startsWith("#")) {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  } else {
-                    setMenuOpen(false);
-                    document.body.style.overflow = "";
-                  }
-                }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const navKeyMap: Record<string, keyof typeof t.nav> = {
+              '#about': 'about',
+              '#services': 'services',
+              '#projects': 'projects',
+              '#team': 'team',
+              'https://talim.bimuz.uz': 'education',
+              '#contact': 'contact'
+            };
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={(e) => {
+                    if (link.href.startsWith("#")) {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    } else {
+                      setMenuOpen(false);
+                      document.body.style.overflow = "";
+                    }
+                  }}
+                >
+                  {t.nav[navKeyMap[link.href]] || link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
@@ -121,7 +133,7 @@ export default function Header() {
                 e.currentTarget.style.borderColor = 'rgba(248, 248, 246, 0.1)';
               }}
             >
-              UZ
+              {lang.toUpperCase()}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.3s', transform: langMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -145,12 +157,16 @@ export default function Header() {
                   boxShadow: '0 12px 32px rgba(0,0,0,0.4)'
                 }}
               >
-                {['O\'zbek (UZ)', 'Русский (RU)', 'English (EN)'].map(lang => (
+                {[
+                  { code: 'uz', label: 'O\'zbek (UZ)' },
+                  { code: 'ru', label: 'Русский (RU)' },
+                  { code: 'en', label: 'English (EN)' }
+                ].map(l => (
                   <button
-                    key={lang}
+                    key={l.code}
                     type="button"
                     style={{
-                      background: 'transparent',
+                      background: lang === l.code ? 'rgba(248, 248, 246, 0.1)' : 'transparent',
                       color: 'var(--white)',
                       border: 'none',
                       padding: '12px 16px',
@@ -160,13 +176,14 @@ export default function Header() {
                       cursor: 'pointer',
                       transition: 'background 0.2s',
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(248, 248, 246, 0.06)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(248, 248, 246, 0.15)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = lang === l.code ? 'rgba(248, 248, 246, 0.1)' : 'transparent'}
                     onClick={() => {
+                      setLang(l.code as any);
                       setLangMenuOpen(false);
                     }}
                   >
-                    {lang}
+                    {l.label}
                   </button>
                 ))}
               </div>
@@ -181,7 +198,7 @@ export default function Header() {
               handleNavClick("#contact");
             }}
           >
-            Loyiha boshlash
+            {t.header.startProject}
           </a>
         </div>
       </nav>

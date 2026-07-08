@@ -27,11 +27,15 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from "@/hooks/useTranslation";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uz" className={`${bebasNeue.variable} ${manrope.variable}`}>
       <body>
-        <GsapProvider>{children}</GsapProvider>
+        <LanguageProvider>
+          <GsapProvider>{children}</GsapProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
