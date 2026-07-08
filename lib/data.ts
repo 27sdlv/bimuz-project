@@ -261,10 +261,10 @@ export const processSteps = [
 ] as const;
 
 export const teamMembers = [
-  { initials: "JD", name: "John Doe", role: "Bosh arxitektor" },
-  { initials: "JD", name: "John Doe", role: "BIM menejeri" },
-  { initials: "JD", name: "John Doe", role: "Konstruktor" },
-  { initials: "JD", name: "John Doe", role: "Vizualizator" },
+  { initials: "SS", name: "Sarvar Sadullaev", role: "BIMUz jamoasi asoschisi, Revit Structure" },
+  { initials: "SO", name: "Shoxrux O'rozov", role: "BIMUz jamoasi vakili, Revit Architecture/Structure" },
+  { initials: "AX", name: "Akobir Xoshimov", role: "BIMUz jamoasi vakili, Revit MEP HVAC" },
+  { initials: "JS", name: "Jonibek Saporboyev", role: "BIMUz jamoasi vakili, Revit MEP Electrical" },
 ] as const;
 
 export const testimonials = [
