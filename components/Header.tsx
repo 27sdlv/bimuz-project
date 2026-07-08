@@ -11,6 +11,7 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const scrolled = useScrollHeader();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
 
   useGSAP(
     () => {
@@ -91,25 +92,86 @@ export default function Header() {
           ))}
         </ul>
 
-        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <select 
-            className="lang-select" 
-            defaultValue="uz"
-            style={{
-              background: 'transparent',
-              color: 'var(--white)',
-              border: '1px solid rgba(248, 248, 246, 0.4)',
-              padding: '6px 12px',
-              borderRadius: '4px',
-              outline: 'none',
-              cursor: 'pointer',
-              fontSize: '0.85rem'
-            }}
-          >
-            <option value="uz" style={{color: '#000'}}>UZ</option>
-            <option value="ru" style={{color: '#000'}}>RU</option>
-            <option value="en" style={{color: '#000'}}>EN</option>
-          </select>
+        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="lang-switcher" style={{ position: 'relative' }}>
+            <button 
+              type="button"
+              onClick={() => setLangMenuOpen(!langMenuOpen)}
+              style={{
+                background: 'rgba(248, 248, 246, 0.05)',
+                color: 'var(--white)',
+                border: '1px solid rgba(248, 248, 246, 0.1)',
+                padding: '8px 12px',
+                borderRadius: '6px',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'all 0.3s'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(248, 248, 246, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(248, 248, 246, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(248, 248, 246, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(248, 248, 246, 0.1)';
+              }}
+            >
+              UZ
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.3s', transform: langMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            
+            {langMenuOpen && (
+              <div 
+                className="lang-dropdown"
+                style={{
+                  position: 'absolute',
+                  top: '100%',
+                  right: 0,
+                  marginTop: '8px',
+                  background: 'var(--ink)',
+                  border: '1px solid rgba(248, 248, 246, 0.08)',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minWidth: '100px',
+                  boxShadow: '0 12px 32px rgba(0,0,0,0.4)'
+                }}
+              >
+                {['O\'zbek (UZ)', 'Русский (RU)', 'English (EN)'].map(lang => (
+                  <button
+                    key={lang}
+                    type="button"
+                    style={{
+                      background: 'transparent',
+                      color: 'var(--white)',
+                      border: 'none',
+                      padding: '12px 16px',
+                      fontSize: '0.75rem',
+                      fontWeight: 500,
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'background 0.2s',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(248, 248, 246, 0.06)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                    onClick={() => {
+                      setLangMenuOpen(false);
+                    }}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           <a
             href="#contact"
