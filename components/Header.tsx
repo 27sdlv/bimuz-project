@@ -91,16 +91,37 @@ export default function Header() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="btn btn-primary nav-cta"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#contact");
-          }}
-        >
-          Loyiha boshlash
-        </a>
+        <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <select 
+            className="lang-select" 
+            defaultValue="uz"
+            style={{
+              background: 'transparent',
+              color: 'var(--white)',
+              border: '1px solid rgba(248, 248, 246, 0.4)',
+              padding: '6px 12px',
+              borderRadius: '4px',
+              outline: 'none',
+              cursor: 'pointer',
+              fontSize: '0.85rem'
+            }}
+          >
+            <option value="uz" style={{color: '#000'}}>UZ</option>
+            <option value="ru" style={{color: '#000'}}>RU</option>
+            <option value="en" style={{color: '#000'}}>EN</option>
+          </select>
+
+          <a
+            href="#contact"
+            className="btn btn-primary nav-cta"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick("#contact");
+            }}
+          >
+            Loyiha boshlash
+          </a>
+        </div>
       </nav>
     </header>
   );
