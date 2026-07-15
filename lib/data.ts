@@ -361,7 +361,7 @@ export const contactDetails = [
   },
   {
     label: "Telefon",
-    value: "+998 71 123 45 67",
+    value: "+998 99 948 33 44",
     icon: "phone",
   },
   {
