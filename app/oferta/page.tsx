@@ -182,19 +182,22 @@ export default function OfertaPage() {
                 <dd style={{ color: "var(--ink)" }}>«BIM SARVAR SADULLAYEV» MChJ</dd>
 
                 <dt style={{ color: "var(--steel)" }}>STIR (INN)</dt>
-                <dd style={{ color: "var(--ink)" }}>[to'ldiriladi]</dd>
+                <dd style={{ color: "var(--ink)" }}>312636823</dd>
+
+                <dt style={{ color: "var(--steel)" }}>OKED</dt>
+                <dd style={{ color: "var(--ink)" }}>62020</dd>
 
                 <dt style={{ color: "var(--steel)" }}>Yuridik manzil</dt>
-                <dd style={{ color: "var(--ink)" }}>[to'ldiriladi]</dd>
+                <dd style={{ color: "var(--ink)" }}>Xorazm v., Shovot tumani, Zamondosh MFY, ibn-Sino ko&apos;chasi, 1-uy</dd>
 
                 <dt style={{ color: "var(--steel)" }}>H/r (hisob raqami)</dt>
-                <dd style={{ color: "var(--ink)" }}>[to'ldiriladi]</dd>
+                <dd style={{ color: "var(--ink)" }}>20208000407361588001</dd>
 
                 <dt style={{ color: "var(--steel)" }}>Bank</dt>
-                <dd style={{ color: "var(--ink)" }}>[to'ldiriladi]</dd>
+                <dd style={{ color: "var(--ink)" }}>&quot;Milliy bank&quot; AJ, Mirzo Ulug&apos;bek filiali</dd>
 
                 <dt style={{ color: "var(--steel)" }}>MFO</dt>
-                <dd style={{ color: "var(--ink)" }}>[to'ldiriladi]</dd>
+                <dd style={{ color: "var(--ink)" }}>00450</dd>
 
                 <dt style={{ color: "var(--steel)" }}>Direktor</dt>
                 <dd style={{ color: "var(--ink)" }}>Sadullayev Sarvar</dd>
