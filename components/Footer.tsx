@@ -1,4 +1,4 @@
-import { navLinks, socialLinks } from "@/lib/data";
+import { navLinks, productLinks, socialLinks } from "@/lib/data";
 import Logo from "./Logo";
 import { SocialIcon } from "./Icons";
 
@@ -18,6 +18,17 @@ export default function Footer() {
           <h4>Navigatsiya</h4>
           <ul>
             {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-links">
+          <h4>Mahsulotlar</h4>
+          <ul>
+            {productLinks.map((link) => (
               <li key={link.href}>
                 <a href={link.href}>{link.label}</a>
               </li>

@@ -3,11 +3,15 @@ export const navLinks = [
   { href: "#services", label: "Xizmatlar" },
   { href: "#projects", label: "Loyihalar" },
   { href: "#team", label: "Jamoa" },
-  { href: "/revit", label: "Revit plagin" },
-  { href: "/cde", label: "CDE" },
-  { href: "/ce", label: "CE" },
   { href: "https://talim.bimuz.uz", label: "Talim" },
   { href: "#contact", label: "Aloqa" },
+] as const;
+
+// "Mahsulotlar" ochiladigan ro'yxati (Header va Footer'da ishlatiladi)
+export const productLinks = [
+  { href: "/revit", label: "BIMUz Revit plagini" },
+  { href: "/cde", label: "BIMUz CDE" },
+  { href: "/ce", label: "BIMUz CE" },
 ] as const;
 
 export const stats = [
