@@ -93,6 +93,21 @@ export default function CePage() {
           <div className="section-grid-bg dark" />
           <div className="container" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
             <span className="section-label light">BIMUz CE</span>
+            <div style={{ marginBottom: 16 }}>
+              <span
+                style={{
+                  display: "inline-block",
+                  border: "1px solid rgba(248,248,246,0.35)",
+                  color: "rgba(248,248,246,0.85)",
+                  padding: "6px 16px",
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                }}
+              >
+                Tez orada
+              </span>
+            </div>
             <h1
               className="section-title light"
               style={{ fontSize: "clamp(2.4rem, 6vw, 4rem)", maxWidth: 900, margin: "0 auto 20px" }}
@@ -104,14 +119,11 @@ export default function CePage() {
               style={{ maxWidth: 640, margin: "0 auto 32px", fontSize: "1.1rem" }}
             >
               Qurilish smetalarini tez va aniq tuzish uchun Windows dasturi. Interfeys o&apos;zbek va rus
-              tilida, normativ baza va avtomatik hisob-kitoblar bilan.
+              tilida, normativ baza va avtomatik hisob-kitoblar bilan. Dastur hozir ishlab chiqilmoqda.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://t.me/BIMUz_uz" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                Bog&apos;lanish
-              </a>
-              <a href="mailto:info@bimuz.uz" className="btn btn-outline">
-                Batafsil ma&apos;lumot
+                Chiqishidan xabardor bo&apos;ling
               </a>
             </div>
           </div>
@@ -152,11 +164,12 @@ export default function CePage() {
         <section className="section" style={{ background: "var(--white)" }}>
           <div className="container" style={{ textAlign: "center", maxWidth: 720 }}>
             <div className="section-header" style={{ textAlign: "center", marginBottom: 20 }}>
-              <span className="section-label">Qiziqdingizmi?</span>
-              <h2 className="section-title">DASTURNI SINAB KO&apos;RING</h2>
+              <span className="section-label">Tez orada</span>
+              <h2 className="section-title">CHIQISHIDAN XABARDOR BO&apos;LING</h2>
             </div>
             <p style={{ color: "var(--ink-light)", fontSize: "1.05rem", lineHeight: 1.8, marginBottom: 28 }}>
-              Narx va dasturni olish bo&apos;yicha ma&apos;lumot uchun biz bilan bog&apos;laning.
+              Dastur hozir ishlab chiqilmoqda. Chiqishi va narxi haqida birinchilardan bo&apos;lib
+              xabar olish uchun biz bilan bog&apos;laning.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://t.me/BIMUz_uz" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
