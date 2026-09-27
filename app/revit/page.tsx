@@ -122,8 +122,12 @@ export default function RevitPlaginPage() {
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               ← Bosh sahifa
             </Link>
-            <a href="#narxlar" className="btn btn-primary" style={{ padding: "10px 22px" }}>
-              Narxlar
+            <a
+              href="https://license.bimuz.uz/download"
+              className="btn btn-primary"
+              style={{ padding: "10px 22px" }}
+            >
+              Yuklab olish
             </a>
           </nav>
         </div>
@@ -152,18 +156,16 @@ export default function RevitPlaginPage() {
               kundalik ishini tezlashtiradigan bitta plagin. Revit 2024, 2025, 2026 va 2027 uchun.
             </p>
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="#narxlar" className="btn btn-primary">
-                Narxlarni ko'rish
+              <a href="https://license.bimuz.uz/download" className="btn btn-primary">
+                Yuklab olish
               </a>
-              <a
-                href="https://t.me/BIMUz_uz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline"
-              >
-                14 kun bepul sinash
+              <a href="#narxlar" className="btn btn-outline">
+                Narxlarni ko&apos;rish
               </a>
             </div>
+            <p className="section-desc light" style={{ margin: "16px auto 0", fontSize: "0.9rem", opacity: 0.75 }}>
+              14 kunlik bepul sinov — o&apos;rnatgach Revitda avtomatik boshlanadi.
+            </p>
             <div
               style={{
                 display: "flex",
