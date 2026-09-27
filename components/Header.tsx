@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import { navLinks } from "@/lib/data";
+import { navLinks, productLinks } from "@/lib/data";
 import { scrollToSection, useScrollHeader } from "@/hooks/useScrollEffects";
 import { gsap, prefersReducedMotion, registerGsap } from "@/lib/gsap";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -13,6 +13,7 @@ export default function Header() {
   const scrolled = useScrollHeader();
   const [menuOpen, setMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const { t, lang, setLang } = useTranslation();
 
   useGSAP(
@@ -82,24 +83,95 @@ export default function Header() {
               '#contact': 'contact'
             };
             return (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  onClick={(e) => {
-                    if (link.href.startsWith("#")) {
-                      e.preventDefault();
-                      handleNavClick(link.href);
-                    } else {
-                      setMenuOpen(false);
-                      document.body.style.overflow = "";
-                    }
-                  }}
-                >
-                  {t.nav[navKeyMap[link.href]] || link.label}
-                </a>
-              </li>
+              <Fragment key={link.href}>
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    onClick={(e) => {
+                      if (link.href.startsWith("#")) {
+                        e.preventDefault();
+                        handleNavClick(link.href);
+                      } else {
+                        setMenuOpen(false);
+                        document.body.style.overflow = "";
+                      }
+                    }}
+                  >
+                    {t.nav[navKeyMap[link.href]] || link.label}
+                  </a>
+                </li>
+
+                {link.href === "#team" && (
+                  <li style={{ position: "relative" }}>
+                    <a
+                      href="#"
+                      aria-haspopup="true"
+                      aria-expanded={productsOpen}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setProductsOpen((o) => !o);
+                      }}
+                      style={{ display: "inline-flex", alignItems: "center", gap: "6px", cursor: "pointer" }}
+                    >
+                      Mahsulotlar
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{ transition: "transform 0.3s", transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                      >
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </a>
+                    {productsOpen && (
+                      <ul
+                        style={{
+                          position: "absolute",
+                          top: "100%",
+                          left: 0,
+                          marginTop: "8px",
+                          background: "var(--ink)",
+                          border: "1px solid rgba(248,248,246,0.1)",
+                          borderRadius: "8px",
+                          overflow: "hidden",
+                          minWidth: "220px",
+                          boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+                          zIndex: 60,
+                        }}
+                      >
+                        {productLinks.map((p) => (
+                          <li key={p.href}>
+                            <a
+                              href={p.href}
+                              onClick={() => {
+                                setProductsOpen(false);
+                                setMenuOpen(false);
+                                document.body.style.overflow = "";
+                              }}
+                              style={{
+                                display: "block",
+                                padding: "12px 16px",
+                                color: "var(--white)",
+                                fontSize: "0.9rem",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {p.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                )}
+              </Fragment>
             );
           })}
         </ul>
