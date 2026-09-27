@@ -3,7 +3,7 @@ export const navLinks = [
   { href: "#services", label: "Xizmatlar" },
   { href: "#projects", label: "Loyihalar" },
   { href: "#team", label: "Jamoa" },
-  { href: "/revit", label: "Revit plagin" },
+  { href: "/revit", label: "BIMUz Revit plagini" },
   { href: "/cde", label: "CDE" },
   { href: "/ce", label: "CE" },
   { href: "https://talim.bimuz.uz", label: "Talim" },
