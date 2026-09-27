@@ -13,7 +13,7 @@ export default function About() {
             HAQIMIZDA
           </h2>
           <p className="about-desc">
-            BimUz — O&apos;zbekistondagi BIM (Building Information Modeling) sohasidagi yetakchi
+            BIMUz — O&apos;zbekistondagi BIM (Building Information Modeling) sohasidagi yetakchi
             kompaniyalardan biri. Biz arxitektura, muhandislik va qurilish sohasidagi loyihalarni
             zamonaviy raqamli texnologiyalar yordamida amalga oshiramiz. Autodesk Revit
             platformasida ishlab, har bir loyihani yuqori aniqlik va sifat bilan hujjatlashtiramiz.

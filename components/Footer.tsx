@@ -50,7 +50,7 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container">
-          <p>&copy; 2024 BimUz. Barcha huquqlar himoyalangan.</p>
+          <p>&copy; 2024 BIMUz. Barcha huquqlar himoyalangan.</p>
         </div>
       </div>
     </footer>
