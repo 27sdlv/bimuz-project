@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Logo({ className = "" }: { className?: string }) {
   return (
-    <Link href="#" className={`logo ${className}`.trim()} aria-label="BimUz — bosh sahifa">
+    <Link href="#" className={`logo ${className}`.trim()} aria-label="BIMUz — bosh sahifa">
       <Image
         src="/logo.png"
         alt=""
@@ -14,7 +14,7 @@ export default function Logo({ className = "" }: { className?: string }) {
         aria-hidden
       />
       <span className="logo-text">
-        BimUz
+        BIMUz
       </span>
     </Link>
   );

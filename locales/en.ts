@@ -12,7 +12,7 @@ const en = {
   },
   hero: {
     tagline: "New standards in BIM design",
-    title: "BimUz — Precise calculation, Perfect result!",
+    title: "BIMUz — Precise calculation, Perfect result!",
     subtitle: "Precision in every detail. Through modern BIM solutions, we implement architectural and engineering projects without errors, quickly, and with high quality.",
     viewProjects: "View our projects",
     contactUs: "Contact us",

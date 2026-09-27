@@ -116,7 +116,7 @@ export default function RevitPlaginPage() {
               color: "var(--white)",
             }}
           >
-            BimUz
+            BIMUz
           </Link>
           <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
@@ -391,7 +391,7 @@ export default function RevitPlaginPage() {
         >
           <div style={{ maxWidth: 360 }}>
             <div style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", letterSpacing: "0.06em" }}>
-              BimUz
+              BIMUz
             </div>
             <p style={{ color: "rgba(248,248,246,0.6)", fontSize: "0.9rem", marginTop: 12 }}>
               «BIM SARVAR SADULLAYEV» MChJ. Revit texnologiyasi asosida professional BIM vositalari.
@@ -422,7 +422,7 @@ export default function RevitPlaginPage() {
             color: "rgba(248,248,246,0.5)",
           }}
         >
-          © 2026 BimUz. Barcha huquqlar himoyalangan.
+          © 2026 BIMUz. Barcha huquqlar himoyalangan.
         </div>
       </footer>
     </>

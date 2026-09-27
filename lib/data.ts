@@ -277,13 +277,13 @@ export const teamMembers = [
 export const testimonials = [
   {
     quote:
-      "BimUz jamoasi bizning biznes markazimiz loyihasini vaqtida va yuqori sifatda yakunladi. BIM texnologiyasi qurilish jarayonida juda ko'p vaqt tejadi.",
+      "BIMUz jamoasi bizning biznes markazimiz loyihasini vaqtida va yuqori sifatda yakunladi. BIM texnologiyasi qurilish jarayonida juda ko'p vaqt tejadi.",
     name: "Alisher Nazarov",
     role: "Quruvchi, Toshkent",
   },
   {
     quote:
-      "Professional yondashuv va batafsil 3D modellar tufayli loyihamizni investorlarga taqdim etish oson bo'ldi. BimUz ga ishonch bilan tavsiya qilaman.",
+      "Professional yondashuv va batafsil 3D modellar tufayli loyihamizni investorlarga taqdim etish oson bo'ldi. BIMUz ga ishonch bilan tavsiya qilaman.",
     name: "Malika Ergasheva",
     role: "Investor, Samarqand",
   },
@@ -304,14 +304,14 @@ export type StaggerTestimonialItem = {
 export const staggerTestimonials: StaggerTestimonialItem[] = [
   {
     testimonial:
-      "BimUz jamoasi biznes markazimiz loyihasini vaqtida va yuqori sifatda yakunladi. BIM texnologiyasi qurilishda juda ko'p vaqt tejadi.",
+      "BIMUz jamoasi biznes markazimiz loyihasini vaqtida va yuqori sifatda yakunladi. BIM texnologiyasi qurilishda juda ko'p vaqt tejadi.",
     by: "Alisher Nazarov, Quruvchi — Toshkent",
     imgSrc:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face",
   },
   {
     testimonial:
-      "Batafsil 3D modellar tufayli loyihamizni investorlarga taqdim etish oson bo'ldi. BimUz ga ishonch bilan tavsiya qilaman.",
+      "Batafsil 3D modellar tufayli loyihamizni investorlarga taqdim etish oson bo'ldi. BIMUz ga ishonch bilan tavsiya qilaman.",
     by: "Malika Ergasheva, Investor — Samarqand",
     imgSrc:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
@@ -353,7 +353,7 @@ export const staggerTestimonials: StaggerTestimonialItem[] = [
   },
   {
     testimonial:
-      "BimUz bilan ishlash — aniq muddatlar, shaffof jarayon va kutilganidan yuqori natija.",
+      "BIMUz bilan ishlash — aniq muddatlar, shaffof jarayon va kutilganidan yuqori natija.",
     by: "Farhod Usmonov, Bosh muhandis — Qarshi",
     imgSrc:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",

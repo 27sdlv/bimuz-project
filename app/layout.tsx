@@ -17,9 +17,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "BimUz — BIM Loyihalash Kompaniyasi",
+  title: "BIMUz — BIM Loyihalash Kompaniyasi",
   description:
-    "BimUz — O'zbekistonning yetakchi BIM loyihalash kompaniyasi. Revit texnologiyasi asosida arxitektura, konstruktiv va muhandislik loyihalari.",
+    "BIMUz — O'zbekistonning yetakchi BIM loyihalash kompaniyasi. Revit texnologiyasi asosida arxitektura, konstruktiv va muhandislik loyihalari.",
   icons: {
     icon: [{ url: "/logo.png", type: "image/png" }],
     shortcut: "/logo.png",

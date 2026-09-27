@@ -12,7 +12,7 @@ const uz = {
   },
   hero: {
     tagline: "BIM loyihalashda yangi standartlar",
-    title: "BimUz — Aniq hisob, Mukammal natija!",
+    title: "BIMUz — Aniq hisob, Mukammal natija!",
     subtitle: "Har bir detalda aniqlik. Zamonaviy BIM yechimlari orqali arxitektura va muhandislik loyihalarini xatosiz, tez hamda yuqori sifatda amalga oshiramiz.",
     viewProjects: "Loyihalarimizni ko'rish",
     contactUs: "Biz bilan bog'lanish",
