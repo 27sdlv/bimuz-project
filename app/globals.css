@@ -239,6 +239,7 @@ ul {
   text-transform: uppercase;
   color: rgba(248, 248, 246, 0.75);
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-links a::after {
