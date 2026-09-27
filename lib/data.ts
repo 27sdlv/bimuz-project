@@ -4,6 +4,8 @@ export const navLinks = [
   { href: "#projects", label: "Loyihalar" },
   { href: "#team", label: "Jamoa" },
   { href: "/revit", label: "Revit plagin" },
+  { href: "/cde", label: "CDE" },
+  { href: "/ce", label: "CE" },
   { href: "https://talim.bimuz.uz", label: "Talim" },
   { href: "#contact", label: "Aloqa" },
 ] as const;
