@@ -1,7 +1,9 @@
 // BIMUz Revit plagini haqidagi ma'lumot — sayt qurilayotganda (build) litsenziya serveridan olinadi.
-// Server javob bermasa, quyidagi zaxira qiymatlar ishlatiladi va sayt buzilmaydi.
-// Yangi reliz yuklanganda server Vercel'ga «qayta qur» signalini yuboradi, shuning uchun
-// bu yerdagi ma'lumot har relizda o'zi yangilanadi.
+// Server javob bermasa, data/plugin.json (oxirgi ma'lum holat) ishlatiladi va sayt buzilmaydi.
+// .github/workflows/plugin-sync.yml har 30 daqiqada serverni tekshiradi: yangi reliz yoki narx
+// o'zgarsa data/plugin.json ni yangilab main'ga yozadi va Vercel saytni o'zi qayta quradi.
+
+import snapshot from "@/data/plugin.json";
 
 const SERVER = process.env.BIMUZ_LICENSE_SERVER || "https://license.bimuz.uz";
 
@@ -50,11 +52,13 @@ type LatestResponse = {
 };
 
 export async function getPluginInfo(): Promise<PluginInfo> {
-  const [plans, latest] = await Promise.all([
+  const [livePlansRes, liveLatestRes] = await Promise.all([
     getJson<PlansResponse>(`${SERVER}/api/plans`),
     // Hamma yillar bir xil versiyada chiqariladi — 2025 ni namuna sifatida olamiz.
     getJson<LatestResponse>(`${SERVER}/api/updates/latest?revit=2025&current=0.0.0.0`),
   ]);
+  const plans = livePlansRes?.ok ? livePlansRes : (snapshot.plans as PlansResponse);
+  const latest = liveLatestRes?.ok ? liveLatestRes : (snapshot.latest as LatestResponse);
 
   const livePlans =
     plans?.ok && plans.plans && plans.plans.length > 0
@@ -75,7 +79,7 @@ export async function getPluginInfo(): Promise<PluginInfo> {
     sizeMb: hasLatest && latest!.size ? Math.round((latest!.size / 1024 / 1024) * 10) / 10 : null,
     plans: livePlans ?? FALLBACK_PLANS,
     maxDevices: plans?.ok && plans.maxDevices ? plans.maxDevices : 2,
-    live: !!livePlans || hasLatest,
+    live: !!livePlansRes?.ok || !!liveLatestRes?.ok,
   };
 }
 

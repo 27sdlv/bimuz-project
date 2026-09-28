@@ -1,0 +1,60 @@
+# BIMUz plagini ma'lumotini (versiya, yangiliklar, narxlar) litsenziya serveridan oladi.
+# O'zgarish bo'lsa data/plugin.json ni yangilab main'ga yozadi — Vercel saytni o'zi qayta quradi.
+# Hech qanday maxfiy kalit kerak emas: server ma'lumoti ochiq, yozish uchun GITHUB_TOKEN yetarli.
+name: Plagin ma'lumotini yangilash
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plugin-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Serverdan olish
+        id: fetch
+        run: |
+          set -euo pipefail
+          SERVER="https://license.bimuz.uz"
+          curl -fsS --retry 3 --max-time 20 "$SERVER/api/plans" -o /tmp/plans.json
+          curl -fsS --retry 3 --max-time 20 "$SERVER/api/updates/latest?revit=2025&current=0.0.0.0" -o /tmp/latest.json
+
+          # Server noto'g'ri javob bersa — hech narsani o'zgartirmaymiz.
+          if [ "$(jq -r '.ok' /tmp/plans.json)" != "true" ] || [ "$(jq '.plans | length' /tmp/plans.json)" = "0" ]; then
+            echo "plans javobi yaroqsiz"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          if [ "$(jq -r '.ok' /tmp/latest.json)" != "true" ]; then
+            echo "latest javobi yaroqsiz"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+
+          jq -n --slurpfile p /tmp/plans.json --slurpfile l /tmp/latest.json '{
+            plans:  ($p[0] | {ok, maxDevices, plans: [.plans[] | {code, name, price, months}]}),
+            latest: ($l[0] | {ok, version, notes, published, size})
+          }' > data/plugin.json
+
+          if git diff --quiet -- data/plugin.json; then
+            echo "o'zgarish yo'q"; echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$(jq -r '.latest.version' data/plugin.json)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Saqlash (Vercel avtomatik qayta quradi)
+        if: steps.fetch.outputs.changed == 'true'
+        run: |
+          git config user.name "bimuz-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/plugin.json
+          git commit -m "plagin: ma'lumot yangilandi (v${{ steps.fetch.outputs.version }})"
+          git push

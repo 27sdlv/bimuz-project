@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { formatPrice, getPluginInfo } from "@/lib/plugin";
 
 export const metadata: Metadata = {
   title: "Ommaviy oferta | BIMUz",
@@ -28,7 +29,7 @@ const sections: { h: string; items: string[] }[] = [
     h: "3. Litsenziya va foydalanish shartlari",
     items: [
       "3.1. Litsenziya obuna asosida (oylik yoki yillik) taqdim etiladi va to'lov amalga oshirilgan paytdan boshlab amal qiladi.",
-      "3.2. Bitta litsenziya kaliti bir vaqtning o'zida ikkitagacha kompyuterda ishlatilishi mumkin.",
+      "3.2. Bitta litsenziya kaliti bir vaqtning o'zida {DEVICES} tagacha kompyuterda ishlatilishi mumkin.",
       "3.3. Foydalanuvchi dasturni ko'chirish, dekompilyatsiya qilish, o'zgartirish yoki uchinchi shaxslarga qayta sotish huquqiga ega emas.",
       "3.4. Yangi versiyalar obuna amal qilish muddati davomida qo'shimcha to'lovsiz taqdim etiladi.",
     ],
@@ -36,7 +37,7 @@ const sections: { h: string; items: string[] }[] = [
   {
     h: "4. Narx va to'lov tartibi",
     items: [
-      "4.1. Xizmat narxi: oylik obuna — 105 000 so'm; yillik obuna — 815 000 so'm. Narxlar QQS bilan ko'rsatilgan.",
+      "4.1. Xizmat narxi: {PRICES}. Narxlar QQS bilan ko'rsatilgan.",
       "4.2. To'lov Payme yoki Click to'lov tizimlari orqali onlayn amalga oshiriladi.",
       "4.3. To'lov muvaffaqiyatli amalga oshirilgach, litsenziya kaliti Foydalanuvchining e-mail manziliga yuboriladi va dasturda avtomatik faollashadi.",
       "4.4. Sotuvchi narxlarni bir tomonlama o'zgartirishga haqli; o'zgarish allaqachon to'langan obuna muddatiga ta'sir qilmaydi.",
@@ -79,7 +80,18 @@ const sections: { h: string; items: string[] }[] = [
   },
 ];
 
-export default function OfertaPage() {
+export default async function OfertaPage() {
+  // Narx va kompyuterlar soni litsenziya serveridagi haqiqiy qiymatlardan olinadi (to'lov ham shu narxda).
+  const info = await getPluginInfo();
+  const prices = [...info.plans]
+    .sort((a, b) => a.months - b.months)
+    .map((p) => {
+      const kind = p.months === 1 ? "oylik" : p.months === 12 ? "yillik" : `${p.months} oylik`;
+      return `${kind} obuna — ${formatPrice(p.price)} so'm`;
+    })
+    .join("; ");
+  const fill = (t: string) => t.replace("{PRICES}", prices).replace("{DEVICES}", String(info.maxDevices));
+
   return (
     <>
       {/* ---- Top bar ---- */}
@@ -150,7 +162,7 @@ export default function OfertaPage() {
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {s.items.map((it, i) => (
                     <p key={i} style={{ color: "var(--ink-light)", fontSize: "0.98rem", lineHeight: 1.7 }}>
-                      {it}
+                      {fill(it)}
                     </p>
                   ))}
                 </div>
