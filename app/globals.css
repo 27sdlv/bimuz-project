@@ -1954,3 +1954,96 @@ ul {
     font-size: 1.05rem;
   }
 }
+
+/* ===================================================================
+   Korporativ obuna va kompaniya kabineti (/revit/korporativ, /revit/cabinet)
+   =================================================================== */
+.corp-nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: flex-end; }
+.corp-nav a { color: rgba(248, 248, 246, 0.7); font-size: 0.9rem; }
+.corp-nav a:hover { color: var(--white); }
+
+.corp-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; margin-top: 40px; }
+.corp-card { border: 1px solid rgba(107, 127, 142, 0.3); background: rgba(255, 255, 255, 0.03); padding: 32px; }
+.corp-card-label { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 20px; }
+
+.corp-seats { display: flex; }
+.corp-seats button { width: 52px; font-size: 1.4rem; color: var(--white); background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(107, 127, 142, 0.3); cursor: pointer; }
+.corp-seats button:hover { background: rgba(255, 255, 255, 0.12); }
+.form-group .corp-seats input { text-align: center; font-size: 1.4rem; border-left: none; border-right: none; -moz-appearance: textfield; }
+.corp-seats input::-webkit-outer-spin-button, .corp-seats input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.corp-range { width: 100%; margin-top: 14px; accent-color: var(--steel-light); }
+
+.corp-terms { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 8px; }
+.corp-terms button { padding: 12px; color: rgba(248, 248, 246, 0.75); background: transparent; border: 1px solid rgba(107, 127, 142, 0.3); cursor: pointer; font-size: 0.95rem; }
+.corp-terms button.active { background: var(--white); color: var(--ink); border-color: var(--white); }
+
+.corp-sum { margin: 8px 0 12px; border-top: 1px solid rgba(107, 127, 142, 0.25); }
+.corp-sum > div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(107, 127, 142, 0.15); font-size: 0.95rem; }
+.corp-sum dt { color: rgba(248, 248, 246, 0.65); }
+.corp-sum .total { border-bottom: none; padding-top: 16px; }
+.corp-sum .total dt { color: var(--white); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.corp-sum .total dd { font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+
+.corp-muted { color: rgba(248, 248, 246, 0.55); font-size: 0.88rem; }
+.corp-muted a, .corp-done a, .corp-cabinet a, .corp-login a { text-decoration: underline; }
+.corp-error { color: #ffb4a8; background: rgba(255, 90, 60, 0.08); border: 1px solid rgba(255, 90, 60, 0.3); padding: 10px 14px; margin: 0 0 16px; font-size: 0.9rem; }
+.corp-notice { color: #bfe8c9; background: rgba(60, 200, 110, 0.08); border: 1px solid rgba(60, 200, 110, 0.3); padding: 10px 14px; margin: 0 0 16px; font-size: 0.9rem; word-break: break-word; }
+.corp-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.corp-done h3 { font-family: var(--font-display); font-size: 2.4rem; margin-bottom: 12px; }
+.corp-done p { margin-bottom: 14px; line-height: 1.6; }
+
+.corp-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: rgba(107, 127, 142, 0.25); border: 1px solid rgba(107, 127, 142, 0.25); max-width: 900px; margin: 0 auto; }
+.corp-tiers > div { background: var(--ink); padding: 20px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+.corp-tiers span { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-light); }
+.corp-tiers strong { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; }
+.corp-tiers em { font-style: normal; font-size: 0.8rem; color: rgba(248, 248, 246, 0.55); }
+
+.corp-benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
+.corp-benefits > div { border-top: 2px solid var(--ink); padding-top: 18px; }
+.corp-benefits h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.corp-benefits p { color: var(--steel); font-size: 0.93rem; line-height: 1.6; }
+.corp-steps { max-width: 760px; margin: 48px auto 0; display: grid; gap: 14px; counter-reset: s; }
+.corp-steps li { list-style: none; counter-increment: s; position: relative; padding-left: 52px; line-height: 1.6; display: block; }
+.corp-steps li::before { content: "0" counter(s); position: absolute; left: 0; top: -2px; font-family: var(--font-display); font-size: 1.4rem; color: var(--steel); }
+.corp-steps a { text-decoration: underline; }
+
+.corp-login { max-width: 520px; margin: 0 auto; }
+.corp-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.corp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+.corp-stats > div { border: 1px solid rgba(107, 127, 142, 0.3); padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+.corp-stats > div.bad { border-color: rgba(255, 90, 60, 0.5); }
+.corp-stats span { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--steel-light); }
+.corp-stats strong { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; }
+.corp-stats em { font-style: normal; font-size: 0.85rem; color: rgba(248, 248, 246, 0.55); }
+
+.corp-add { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.corp-add input { flex: 1 1 260px; padding: 14px 16px; font-size: 0.95rem; color: var(--white); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(107, 127, 142, 0.3); outline: none; font-family: var(--font-body); }
+.corp-add input:focus { border-color: var(--steel-light); }
+
+.corp-table-wrap { overflow-x: auto; }
+.corp-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.corp-table th { text-align: left; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-light); padding: 10px 12px; border-bottom: 1px solid rgba(107, 127, 142, 0.35); font-weight: 700; }
+.corp-table td { padding: 14px 12px; border-bottom: 1px solid rgba(107, 127, 142, 0.15); vertical-align: top; word-break: break-word; }
+.corp-key { font-family: monospace; font-size: 0.85rem; color: var(--white); background: rgba(255, 255, 255, 0.06); border: 1px dashed rgba(107, 127, 142, 0.5); padding: 4px 8px; cursor: copy; }
+.corp-devices { display: grid; gap: 8px; }
+.corp-devices li { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.corp-devices em { display: block; font-style: normal; font-size: 0.78rem; color: rgba(248, 248, 246, 0.5); }
+.corp-devices button, .corp-remove { font-size: 0.8rem; color: rgba(248, 248, 246, 0.75); background: transparent; border: 1px solid rgba(107, 127, 142, 0.4); padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+.corp-remove:hover { color: #ffb4a8; border-color: rgba(255, 90, 60, 0.5); }
+.corp-devices button:hover { color: var(--white); border-color: var(--steel-light); }
+.corp-subtitle { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin: 36px 0 12px; }
+
+.corp-teaser { max-width: 760px; margin: 32px auto 0; padding: 28px 32px; border: 1px solid rgba(107, 127, 142, 0.3); display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.corp-teaser p { color: var(--steel); font-size: 0.93rem; margin-top: 6px; max-width: 460px; }
+
+@media (max-width: 860px) {
+  .corp-grid { grid-template-columns: 1fr; }
+  .corp-card { padding: 22px; }
+}
+@media (max-width: 640px) {
+  .corp-table thead { display: none; }
+  .corp-table tr { display: block; border-bottom: 1px solid rgba(107, 127, 142, 0.3); padding: 8px 0; }
+  .corp-table td { display: block; border: none; padding: 6px 0; }
+  .corp-table td[data-label]::before { content: attr(data-label); display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 4px; }
+  .form-row { grid-template-columns: 1fr; }
+}
