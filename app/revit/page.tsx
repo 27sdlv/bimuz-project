@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { formatPrice, getPluginInfo, type PluginPlan } from "@/lib/plugin";
 
-export const metadata: Metadata = {
-  title: "BIMUz — Revit plagini | Narxlar va imkoniyatlar",
-  description:
-    "BIMUz Revit plagini — armaturalash, kolonna, balka va poydevor, Excel/IFC eksport, CDE. Revit 2024–2027. Oylik 105 000 so'm, yillik 815 000 so'm. 14 kunlik bepul sinov.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const info = await getPluginInfo();
+  const m = info.plans.find((p) => p.months === 1);
+  const y = info.plans.find((p) => p.months === 12);
+  const prices = [
+    m ? `Oylik ${formatPrice(m.price)} so'm` : null,
+    y ? `yillik ${formatPrice(y.price)} so'm` : null,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  return {
+    title: "BIMUz — Revit plagini | Narxlar va imkoniyatlar",
+    description:
+      "BIMUz Revit plagini — armaturalash, konstruktiv elementlar, arxitektura, MEP, loyiha hujjatlari, Excel/IFC eksport, CDE. Revit 2024–2027." +
+      (prices ? ` ${prices}.` : "") +
+      " 14 kunlik bepul sinov.",
+  };
+}
 
 const features = [
   {
@@ -17,55 +31,69 @@ const features = [
     desc: "Kolonna, balka va poydevorlarni tez yaratish, parametrlar bo'yicha boshqarish va standartlashtirish.",
   },
   {
-    title: "Excel eksport / import",
-    desc: "Spetsifikatsiya va ma'lumotlarni Excel bilan ikki tomonlama almashish — hisobot va smeta uchun.",
+    title: "Arxitektura",
+    desc: "Elementlarni parametr bo'yicha ranglash, istalgan parametrni universal raqamlash va o'qlarni avtomatik o'lchash.",
   },
   {
-    title: "IFC va host-mapping",
-    desc: "IFC modellarini to'g'ri toifalarga bog'lash va boshqa platformalar bilan almashinuvni soddalashtirish.",
+    title: "MEP bo'limi",
+    desc: "Teshik vazifasi, kolliziyalar, MEP spetsifikatsiya va markalash; VK, OV va EOM uchun qiyalik, stoyaklar, izolyatsiya, havo balansi, tezlik, yoritgich va kabel hisoblari.",
   },
   {
-    title: "CDE / СОД integratsiyasi",
-    desc: "Umumiy ma'lumotlar muhiti (ISO 19650) bilan bog'lanish — hujjat va versiyalarni markazlashtirilgan boshqarish.",
+    title: "Loyiha hujjatlari",
+    desc: "Spetsifikatsiyalar, PDF eksport, shtamp, Exceldan listlar, ko'rinishlarni tekislash, chizmalar, pardoz va peremichka vedomostlari, qidirish va almashtirish.",
+  },
+  {
+    title: "Excel, IFC va CDE",
+    desc: "Excel bilan ikki tomonlama almashish, IFC host-mapping va umumiy ma'lumotlar muhiti (ISO 19650) bilan bog'lanish.",
+  },
+  {
+    title: "Fikr bildirish va yordam",
+    desc: "Plagin ichidan xato yoki taklifni skrinshot bilan yuboring — jamoamiz javobi to'g'ridan-to'g'ri Revitda keladi.",
   },
   {
     title: "Avtomatik yangilanish",
-    desc: "Yangi versiyalar plagin ichidan bir tugma bilan o'rnatiladi — har safar qayta o'rnatish shart emas.",
+    desc: "Yangi versiyalar plagin ichidan avtomatik yuklab olinadi — har safar qayta o'rnatish shart emas.",
   },
 ];
 
 const versions = ["Revit 2024", "Revit 2025", "Revit 2026", "Revit 2027"];
 
-const plans = [
-  {
-    name: "Oylik",
-    price: "105 000",
-    period: "so'm / oy",
-    note: "Har oy uzaytiriladi",
-    features: [
-      "Barcha modullar to'liq",
-      "Revit 2024–2027",
-      "Avtomatik yangilanishlar",
-      "1 kalit — 2 ta kompyuter",
-      "Telegram orqali qo'llab-quvvatlash",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Yillik",
-    price: "815 000",
-    period: "so'm / yil",
-    note: "Oylikka nisbatan ~35% tejaladi",
-    features: [
-      "Barcha modullar to'liq",
-      "Revit 2024–2027",
-      "Avtomatik yangilanishlar",
-      "1 kalit — 2 ta kompyuter",
-      "Ustuvor qo'llab-quvvatlash",
-    ],
-    highlight: true,
-  },
-];
+type PlanCard = {
+  name: string;
+  price: string;
+  period: string;
+  note: string;
+  features: string[];
+  highlight: boolean;
+};
+
+function buildPlans(plans: PluginPlan[], maxDevices: number): PlanCard[] {
+  const monthly = plans.find((p) => p.months === 1);
+  return [...plans]
+    .sort((a, b) => a.months - b.months)
+    .map((p) => {
+      const yearly = p.months >= 12;
+      let note = p.months === 1 ? "Har oy uzaytiriladi" : `${p.months} oylik obuna`;
+      if (yearly && monthly && monthly.price > 0) {
+        const saving = Math.round((1 - p.price / (monthly.price * p.months)) * 100);
+        if (saving > 0) note = `Oylikka nisbatan ~${saving}% tejaladi`;
+      }
+      return {
+        name: p.name,
+        price: formatPrice(p.price),
+        period: p.months === 1 ? "so'm / oy" : p.months === 12 ? "so'm / yil" : `so'm / ${p.months} oy`,
+        note,
+        features: [
+          "Barcha modullar to'liq",
+          "Revit 2024–2027",
+          "Avtomatik yangilanishlar",
+          `1 kalit — ${maxDevices} ta kompyuter`,
+          yearly ? "Ustuvor qo'llab-quvvatlash" : "Telegram orqali qo'llab-quvvatlash",
+        ],
+        highlight: yearly,
+      };
+    });
+}
 
 const steps = [
   {
@@ -85,7 +113,10 @@ const steps = [
   },
 ];
 
-export default function RevitPlaginPage() {
+export default async function RevitPlaginPage() {
+  const info = await getPluginInfo();
+  const plans = buildPlans(info.plans, info.maxDevices);
+
   return (
     <>
       {/* ---- Top bar ---- */}
@@ -152,9 +183,24 @@ export default function RevitPlaginPage() {
               className="section-desc light"
               style={{ maxWidth: 640, margin: "0 auto 32px", fontSize: "1.1rem" }}
             >
-              Armaturalash, konstruktiv elementlar, Excel va IFC eksporti, CDE integratsiyasi — konstruktorning
-              kundalik ishini tezlashtiradigan bitta plagin. Revit 2024, 2025, 2026 va 2027 uchun.
+              Armaturalash, konstruktiv elementlar, arxitektura, MEP va loyiha hujjatlari, Excel va IFC eksporti,
+              CDE integratsiyasi — loyihachining kundalik ishini tezlashtiradigan bitta plagin. Revit 2024, 2025, 2026
+              va 2027 uchun.
             </p>
+            {info.version && (
+              <p style={{ margin: "-12px auto 28px", fontSize: "0.85rem", letterSpacing: "0.06em", opacity: 0.75 }}>
+                So&apos;nggi versiya: <strong>{info.version}</strong>
+                {info.published ? ` · ${info.published}` : ""}
+                {info.notes.length > 0 && (
+                  <>
+                    {" · "}
+                    <a href="#yangiliklar" style={{ textDecoration: "underline" }}>
+                      nima yangi?
+                    </a>
+                  </>
+                )}
+              </p>
+            )}
             <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
               <a href="https://license.bimuz.uz/download" className="btn btn-primary">
                 Yuklab olish
@@ -223,6 +269,39 @@ export default function RevitPlaginPage() {
             </div>
           </div>
         </section>
+
+        {/* ---- What's new (litsenziya serveridagi so'nggi reliz izohi) ---- */}
+        {info.version && info.notes.length > 0 && (
+          <section className="section" id="yangiliklar" style={{ background: "var(--white)", paddingBottom: 0 }}>
+            <div className="container" style={{ maxWidth: 760 }}>
+              <div className="section-header" style={{ textAlign: "center" }}>
+                <span className="section-label">Yangiliklar</span>
+                <h2 className="section-title">VERSIYA {info.version}</h2>
+                {info.published && (
+                  <p className="section-desc" style={{ margin: "0 auto" }}>
+                    {info.published} da chiqarildi — o&apos;rnatilgan plaginlar avtomatik yangilanadi.
+                  </p>
+                )}
+              </div>
+              <ul
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 14,
+                  border: "1px solid rgba(107,127,142,0.25)",
+                  padding: "28px 32px",
+                }}
+              >
+                {info.notes.map((n) => (
+                  <li key={n} style={{ display: "flex", gap: 12, fontSize: "1rem", color: "var(--ink)" }}>
+                    <span style={{ color: "var(--steel)" }}>—</span>
+                    <span>{n}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {/* ---- Pricing ---- */}
         <section className="section" id="narxlar" style={{ background: "var(--white)" }}>
