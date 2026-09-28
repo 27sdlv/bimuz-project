@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const features = [
   {
     title: "Armaturalash",
-    desc: "Poydevor plitasi, kolonna, balka va devor armaturasini avtomatik joylashtirish — qo'lda chizishga sarflanadigan soatlarni tejaydi.",
+    desc: "Poydevor (tasmasimon, alohida, plita), kolonna, balka va devor armaturasini avtomatik joylashtirish; armaturani asosdan asosga ko'chirish va nusxalash, naborni portlatish.",
   },
   {
     title: "Konstruktiv elementlar",
@@ -49,6 +49,10 @@ const features = [
   {
     title: "Fikr bildirish va yordam",
     desc: "Plagin ichidan xato yoki taklifni skrinshot bilan yuboring — jamoamiz javobi to'g'ridan-to'g'ri Revitda keladi.",
+  },
+  {
+    title: "O'zbek va rus tillari",
+    desc: "Interfeys bir tugma bilan o'zbekcha yoki ruschaga o'tadi — lenta, oynalar va xabarlar. Model ichidagi nomlar o'zgarmaydi.",
   },
   {
     title: "Avtomatik yangilanish",
