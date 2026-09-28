@@ -411,6 +411,25 @@ export default async function RevitPlaginPage() {
             >
               To'lov Payme yoki Click orqali amalga oshiriladi. Narxlar QQS bilan.
             </p>
+            <div className="corp-teaser">
+              <div>
+                <div style={{ fontSize: "0.8rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--steel)" }}>
+                  Kompaniyalar uchun
+                </div>
+                <h3 style={{ fontSize: "1.3rem", marginTop: 6 }}>Korporativ obuna</h3>
+                <p>
+                  Xodimlar soni bo&apos;yicha o&apos;rinlar, shartnoma va bank o&apos;tkazmasi, 5 o&apos;rindan boshlab
+                  chegirma va xodimlarni boshqarish kabineti.
+                </p>
+              </div>
+              <Link
+                href="/revit/korporativ"
+                className="btn btn-outline"
+                style={{ color: "var(--ink)", borderColor: "rgba(18,32,47,0.3)" }}
+              >
+                Batafsil
+              </Link>
+            </div>
           </div>
         </section>
 
