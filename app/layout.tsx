@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/hooks/useTranslation";
+import PageTranslator from "@/components/PageTranslator";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LanguageProvider>
           <GsapProvider>{children}</GsapProvider>
+          <PageTranslator />
         </LanguageProvider>
       </body>
     </html>

@@ -1,14 +1,15 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import uz from "../locales/uz";
 import ru from "../locales/ru";
 import en from "../locales/en";
 
-type Language = "uz" | "ru" | "en";
+export type Language = "uz" | "ru" | "en";
 type Dictionary = typeof uz;
 
 const translations: Record<Language, Dictionary> = { uz, ru, en };
+const STORAGE_KEY = "bimuz-lang";
 
 interface LanguageContextType {
   lang: Language;
@@ -23,7 +24,26 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Language>("uz");
+  const [lang, setLangState] = useState<Language>("uz");
+
+  // Tanlangan til barcha sahifalarda saqlanadi.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === "ru" || saved === "en") setLangState(saved);
+    } catch {
+      /* brauzer xotirasi yopiq */
+    }
+  }, []);
+
+  const setLang = (l: Language) => {
+    setLangState(l);
+    try {
+      localStorage.setItem(STORAGE_KEY, l);
+    } catch {
+      /* e'tiborsiz */
+    }
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>

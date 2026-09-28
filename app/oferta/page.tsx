@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { formatPrice, getPluginInfo } from "@/lib/plugin";
 
 export const metadata: Metadata = {
@@ -124,13 +125,14 @@ export default async function OfertaPage() {
           >
             BIMUz
           </Link>
-          <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <nav className="sub-nav" style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               ← Bosh sahifa
             </Link>
             <Link href="/revit" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               Revit plagin
             </Link>
+            <LanguageSwitcher />
           </nav>
         </div>
       </header>

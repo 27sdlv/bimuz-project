@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export const metadata: Metadata = {
   title: "BIMUz CE — Smeta (qurilish smetasi) dasturi",
@@ -67,7 +68,7 @@ export default function CePage() {
           >
             BIMUz
           </Link>
-          <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <nav className="sub-nav" style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               ← Bosh sahifa
             </Link>
@@ -80,6 +81,7 @@ export default function CePage() {
             >
               Bog&apos;lanish
             </a>
+            <LanguageSwitcher />
           </nav>
         </div>
       </header>

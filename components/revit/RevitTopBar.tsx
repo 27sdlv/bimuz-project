@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 type NavLink = { href: string; label: string };
 
@@ -41,6 +42,7 @@ export default function RevitTopBar({ links }: { links: NavLink[] }) {
               {l.label}
             </Link>
           ))}
+          <LanguageSwitcher />
         </nav>
       </div>
     </header>

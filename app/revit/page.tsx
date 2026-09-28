@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { formatPrice, getPluginInfo, type PluginPlan } from "@/lib/plugin";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -153,7 +154,7 @@ export default async function RevitPlaginPage() {
           >
             BIMUz
           </Link>
-          <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <nav className="sub-nav" style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               ← Bosh sahifa
             </Link>
@@ -164,6 +165,7 @@ export default async function RevitPlaginPage() {
             >
               Yuklab olish
             </a>
+            <LanguageSwitcher />
           </nav>
         </div>
       </header>

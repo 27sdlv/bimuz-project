@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export const metadata: Metadata = {
   title: "BIMUz CDE — Umumiy ma'lumotlar muhiti (ISO 19650)",
@@ -77,7 +78,7 @@ export default function CdePage() {
           >
             BIMUz
           </Link>
-          <nav style={{ display: "flex", alignItems: "center", gap: "24px" }}>
+          <nav className="sub-nav" style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link href="/" style={{ color: "rgba(248,248,246,0.7)", fontSize: "0.9rem" }}>
               ← Bosh sahifa
             </Link>
@@ -90,6 +91,7 @@ export default function CdePage() {
             >
               Platformaga kirish
             </a>
+            <LanguageSwitcher />
           </nav>
         </div>
       </header>

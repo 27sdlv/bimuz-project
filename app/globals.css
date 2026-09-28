@@ -2047,3 +2047,14 @@ ul {
   .corp-table td[data-label]::before { content: attr(data-label); display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel-light); margin-bottom: 4px; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* Ichki sahifalar uchun ixcham til tanlagich */
+.lang-mini { display: inline-flex; border: 1px solid rgba(248, 248, 246, 0.25); }
+.lang-mini button { background: transparent; color: rgba(248, 248, 246, 0.7); border: none; padding: 6px 9px; font-size: 0.75rem; letter-spacing: 0.08em; cursor: pointer; font-family: var(--font-body); }
+.lang-mini button + button { border-left: 1px solid rgba(248, 248, 246, 0.25); }
+.lang-mini button.active { background: var(--white); color: var(--ink); }
+.lang-mini button:hover:not(.active) { color: var(--white); }
+@media (max-width: 640px) {
+  .sub-nav { gap: 12px !important; }
+  .sub-nav .btn { display: none; }
+}
