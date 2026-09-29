@@ -195,7 +195,7 @@ export default function AdminPage() {
           </div>
           <div className="adm-scroll">
             <table>
-              <thead><tr><th>E-mail</th><th>Калит</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
+              <thead><tr><th>E-mail</th><th>Калит</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Қурилма номи / ID</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
               <tbody>
                 {rows.map(({ a, st, last }) => (
                   <Fragment key={a.email}>
@@ -205,12 +205,15 @@ export default function AdminPage() {
                       <td><span className={"adm-st " + st.key}>{st.label}</span></td>
                       <td>{a.plan === "none" ? "—" : fmtDate(a.paidUntil)}</td>
                       <td className={a.devices.length >= 3 ? "warn" : ""}>{a.devices.length}</td>
+                      <td className="ids">{a.devices.length === 0 ? "—" : a.devices.map((d) => (
+                        <div key={d.id} title={d.id}>{d.name || "—"} <span className="mono">{d.id.slice(0, 10)}…</span></div>
+                      ))}</td>
                       <td>{last ? fmtDT(new Date(last).toISOString()) : "—"}</td>
                       <td>{a.devices.map((d) => d.version).filter(Boolean).sort().slice(-1)[0] || "—"}</td>
                       <td>{fmtDate(a.createdAt)}</td>
                     </tr>
                     {open === a.email && (
-                      <tr className="detail"><td colSpan={8}>
+                      <tr className="detail"><td colSpan={9}>
                         <div className="adm-det">
                           <div><b>Калит:</b> {a.licenseKey} {a.phone && <>· <b>Тел:</b> {a.phone}</>}</div>
                           <ul>{a.devices.map((d) => <li key={d.id}><b>{d.name || "—"}</b> · ID <span className="mono">{d.id}</span> · {d.version || "?"} · охирги: {fmtDT(d.lastSeen)}</li>)}{a.devices.length === 0 && <li>Қурилма йўқ</li>}</ul>
@@ -309,6 +312,7 @@ export default function AdminPage() {
 
 const CSS = `
 .adm .mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;word-break:break-all}
+.adm td.ids div{white-space:nowrap}
 .adm-sec h3{font-size:15px;margin:18px 0 8px}
 .adm{min-height:100vh;background:#0f1720;color:#e6ebf0;font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:16px 20px 40px}
 .adm h1{font-size:18px;margin:0}
