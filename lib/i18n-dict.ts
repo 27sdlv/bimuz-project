@@ -450,4 +450,9 @@ export const SITE_DICT: Record<string, [string, string]> = {
   "yoki": ["или", "or"],
   "Nusxa olindi: ": ["Скопировано: ", "Copied: "],
   "Yuborilmoqda…": ["Отправка…", "Sending…"],
+  "Yo'riqnoma": ["Руководство", "Guide"],
+  "Foydalanish yo'riqnomasi": ["Руководство пользователя", "User guide"],
+  "Har bir buyruq bo'yicha qadam-baqadam yo'riqnoma: nima tayyorlash kerak, oyna sozlamalari va natija. Revit'da tugma ustida F1 bosilsa ham ochiladi.": ["Пошаговое руководство по каждой команде: что подготовить, настройки окна и результат. Открывается и по F1 над кнопкой в Revit.", "Step-by-step guide for every command: what to prepare, window settings and the result. Also opens with F1 over a button in Revit."],
+  "Ochish": ["Открыть", "Open"],
+  "Yo'riqnomalar": ["Руководства", "Guides"],
 };

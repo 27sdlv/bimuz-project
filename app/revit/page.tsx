@@ -436,6 +436,25 @@ export default async function RevitPlaginPage() {
                 Batafsil
               </Link>
             </div>
+            <div className="corp-teaser" style={{ marginTop: 16 }}>
+              <div>
+                <div style={{ fontSize: "0.8rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--steel)" }}>
+                  Yo&apos;riqnoma
+                </div>
+                <h3 style={{ fontSize: "1.3rem", marginTop: 6 }}>Foydalanish yo&apos;riqnomasi</h3>
+                <p>
+                  Har bir buyruq bo&apos;yicha qadam-baqadam yo&apos;riqnoma: nima tayyorlash kerak, oyna sozlamalari va
+                  natija. Revit&apos;da tugma ustida F1 bosilsa ham ochiladi.
+                </p>
+              </div>
+              <Link
+                href="/revit/docs"
+                className="btn btn-outline"
+                style={{ color: "var(--ink)", borderColor: "rgba(18,32,47,0.3)" }}
+              >
+                Ochish
+              </Link>
+            </div>
           </div>
         </section>
 

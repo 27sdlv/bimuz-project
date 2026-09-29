@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="110" y="70" width="280" height="280" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+  <path d="M 141.5,92.5 L 358.5,92.5 Q 367.5,92.5 367.5,101.5 L 367.5,318.5 Q 367.5,327.5 358.5,327.5 L 141.5,327.5 Q 132.5,327.5 132.5,318.5 L 132.5,101.5 Q 132.5,92.5 141.5,92.5 Z" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 141.5,92.5 L 157.5,108.5" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 132.5,101.5 L 148.5,117.5" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 250,93 L 367,210 L 250,327 L 133,210 L 250,93" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 250,93 L 268,114" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 250,93 L 232,114" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="142" cy="102" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="358" cy="102" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="142" cy="318" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="358" cy="318" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="250" cy="102" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="250" cy="318" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="142" cy="210" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="358" cy="210" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="362" cy="322" r="2" fill="#37474f" stroke="none" stroke-width="1" />
+  <line x1="362" y1="322" x2="424" y2="382" stroke="#37474f" stroke-width="1" />
+  <line x1="424" y1="382" x2="464" y2="382" stroke="#37474f" stroke-width="1" />
+  <text x="428" y="377" font-size="14" text-anchor="start" fill="#c62828" font-weight="bold" >AU</text>
+  <circle cx="363" cy="215" r="2" fill="#37474f" stroke="none" stroke-width="1" />
+  <line x1="363" y1="215" x2="424" y2="250" stroke="#37474f" stroke-width="1" />
+  <line x1="424" y1="250" x2="464" y2="250" stroke="#37474f" stroke-width="1" />
+  <text x="428" y="245" font-size="14" text-anchor="start" fill="#1565c0" font-weight="bold" >AS</text>
+  <circle cx="367.5" cy="150" r="2" fill="#37474f" stroke="none" stroke-width="1" />
+  <line x1="367.5" y1="150" x2="424" y2="130" stroke="#37474f" stroke-width="1" />
+  <line x1="424" y1="130" x2="464" y2="130" stroke="#37474f" stroke-width="1" />
+  <text x="428" y="125" font-size="14" text-anchor="start" fill="#2e7d32" font-weight="bold" >Х_52</text>
+  <line x1="110" y1="48" x2="110" y2="130" stroke="#37474f" stroke-width="0.8" />
+  <line x1="131" y1="48" x2="131" y2="130" stroke="#37474f" stroke-width="0.8" />
+  <line x1="104" y1="54" x2="137" y2="54" stroke="#37474f" stroke-width="1" />
+  <line x1="106" y1="58" x2="114" y2="50" stroke="#37474f" stroke-width="1.2" />
+  <line x1="127" y1="58" x2="135" y2="50" stroke="#37474f" stroke-width="1.2" />
+  <text x="120.5" y="48" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" font-style="italic">c</text>
+  <text x="250" y="390" font-size="14" text-anchor="middle" fill="#263238" font-weight="normal" >AS:  X = 1,  Y = 1</text>
+  <rect x="500" y="70" width="280" height="280" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+  <path d="M 531.5,92.5 L 748.5,92.5 Q 757.5,92.5 757.5,101.5 L 757.5,318.5 Q 757.5,327.5 748.5,327.5 L 531.5,327.5 Q 522.5,327.5 522.5,318.5 L 522.5,101.5 Q 522.5,92.5 531.5,92.5 Z" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 531.5,92.5 L 547.5,108.5" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 522.5,101.5 L 538.5,117.5" fill="none" stroke="#2e7d32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 614,126 L 614,102 A 10 10 0 0 0 594,102 L 594,318 A 10 10 0 0 0 614,318 L 614,294" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 686,126 L 686,102 A 10 10 0 0 0 666,102 L 666,318 A 10 10 0 0 0 686,318 L 686,294" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 556,164 L 532,164 A 10 10 0 0 0 532,184 L 748,184 A 10 10 0 0 0 748,164 L 724,164" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 556,236 L 532,236 A 10 10 0 0 0 532,256 L 748,256 A 10 10 0 0 0 748,236 L 724,236" fill="none" stroke="#2e7d32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="532" cy="102" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="748" cy="102" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="532" cy="318" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="748" cy="318" r="7" fill="#c62828" stroke="none" stroke-width="1" />
+  <circle cx="604" cy="102" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="604" cy="318" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="676" cy="102" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="676" cy="318" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="532" cy="174" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="748" cy="174" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="532" cy="246" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="748" cy="246" r="7" fill="#1565c0" stroke="none" stroke-width="1" />
+  <circle cx="666" cy="130" r="2" fill="#37474f" stroke="none" stroke-width="1" />
+  <line x1="666" y1="130" x2="814" y2="110" stroke="#37474f" stroke-width="1" />
+  <line x1="814" y1="110" x2="854" y2="110" stroke="#37474f" stroke-width="1" />
+  <text x="818" y="105" font-size="14" text-anchor="start" fill="#2e7d32" font-weight="bold" >Х_22</text>
+  <circle cx="708" cy="256" r="2" fill="#37474f" stroke="none" stroke-width="1" />
+  <line x1="708" y1="256" x2="814" y2="306" stroke="#37474f" stroke-width="1" />
+  <line x1="814" y1="306" x2="854" y2="306" stroke="#37474f" stroke-width="1" />
+  <text x="818" y="301" font-size="14" text-anchor="start" fill="#2e7d32" font-weight="bold" >Х_22</text>
+  <text x="640" y="390" font-size="14" text-anchor="middle" fill="#263238" font-weight="normal" >AS:  X = 2,  Y = 2</text>
+  <path d="M 44,350 L 74,350" fill="none" stroke="#37474f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 68,346 L 74,350 L 68,354" fill="none" stroke="#37474f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 44,350 L 44,320" fill="none" stroke="#37474f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 40,326 L 44,320 L 48,326" fill="none" stroke="#37474f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="80" y="355" font-size="13" text-anchor="start" fill="#263238" font-weight="normal" >X</text>
+  <text x="44" y="314" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" >Y</text>
+</svg>

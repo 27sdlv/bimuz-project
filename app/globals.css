@@ -2058,3 +2058,45 @@ ul {
   .sub-nav { gap: 12px !important; }
   .sub-nav .btn { display: none; }
 }
+
+/* ===================== Foydalanish yo'riqnomasi (/revit/docs) ===================== */
+.doc-page { background: #f4f5f2; padding: 48px 0 80px; min-height: 70vh; }
+.doc-container { max-width: 920px; }
+.doc, .doc-index { font-family: var(--font-body), system-ui, sans-serif; color: var(--ink); }
+.doc-crumbs { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.85rem; color: #5a6b7b; margin-bottom: 20px; }
+.doc-crumbs a { color: #2d5b86; }
+.doc-crumbs a:hover { text-decoration: underline; }
+.doc-head { margin-bottom: 28px; }
+.doc-head h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; margin: 8px 0 12px; letter-spacing: -0.01em; }
+.doc-lead { font-size: 1.08rem; line-height: 1.65; color: #34465a; max-width: 760px; }
+.doc-button { display: inline-block; font-size: 0.8rem; color: #5a6b7b; background: #e6eaee; padding: 4px 10px; border-radius: 4px; }
+.doc section { margin-top: 36px; }
+.doc h2, .doc-index h2 { font-size: 1.35rem; font-weight: 800; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #d9dfe4; }
+.doc-index h2 small { font-size: 0.9rem; font-weight: 500; color: #6b7c8c; }
+.doc h3 { font-size: 1rem; font-weight: 700; margin: 20px 0 8px; color: #2d4257; }
+.doc-list { padding-left: 1.2em; line-height: 1.65; }
+.doc-list li { margin: 6px 0; list-style: disc; }
+.doc-tips li::marker { color: #c9822b; }
+.doc-steps { counter-reset: step; padding: 0; }
+.doc-steps > li { list-style: none; position: relative; padding: 2px 0 14px 48px; line-height: 1.65; }
+.doc-steps > li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.doc-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #fff; }
+.doc-table th, .doc-table td { border: 1px solid #dde3e8; padding: 8px 12px; text-align: left; vertical-align: top; line-height: 1.5; }
+.doc-table th { background: #eef1f4; font-weight: 700; }
+.doc-table td:first-child { width: 34%; font-weight: 600; }
+.doc-figure { margin: 22px 0; background: #fff; border: 1px solid #dde3e8; padding: 12px; }
+.doc-figure img { width: 100%; height: auto; display: block; }
+.doc-figure figcaption { font-size: 0.85rem; color: #5a6b7b; margin-top: 8px; text-align: center; }
+.doc-f1 { margin-top: 48px; font-size: 0.85rem; color: #6b7c8c; border-top: 1px solid #d9dfe4; padding-top: 16px; }
+.doc-index section { margin-top: 32px; }
+.doc-section-desc { color: #4a5c6e; margin-bottom: 16px; line-height: 1.6; }
+.doc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.doc-card { display: flex; flex-direction: column; gap: 6px; background: #fff; border: 1px solid #dde3e8; padding: 16px 18px; transition: border-color .15s, box-shadow .15s; }
+.doc-card:hover { border-color: #2d5b86; box-shadow: 0 4px 14px rgba(18, 32, 47, 0.08); }
+.doc-card-btn { font-size: 0.75rem; color: #6b7c8c; text-transform: uppercase; letter-spacing: 0.05em; }
+.doc-card b { font-size: 1.02rem; }
+.doc-card-sum { font-size: 0.86rem; color: #4a5c6e; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 640px) {
+  .doc-table td:first-child { width: 40%; }
+  .doc-steps > li { padding-left: 40px; }
+}

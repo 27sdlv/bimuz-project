@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 500" font-family="Arial, Helvetica, sans-serif">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="70" y="86" width="790" height="320" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+  <line x1="427.5" y1="76" x2="427.5" y2="416" stroke="#37474f" stroke-width="1" stroke-dasharray="10 3 2 3"/>
+  <line x1="751.5" y1="76" x2="751.5" y2="416" stroke="#37474f" stroke-width="1" stroke-dasharray="10 3 2 3"/>
+  <line x1="387" y1="76" x2="387" y2="416" stroke="#37474f" stroke-width="1" stroke-dasharray="10 3 2 3"/>
+  <line x1="711" y1="76" x2="711" y2="416" stroke="#37474f" stroke-width="1" stroke-dasharray="10 3 2 3"/>
+  <path d="M 90,120 L 441,120" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414,125 L 765,125" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 738,120 L 840,120" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="125" font-size="13" text-anchor="end" fill="#c62828" font-weight="bold" >1</text>
+  <path d="M 90,156 L 400.5,156" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 373.5,161 L 724.5,161" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 697.5,156 L 840,156" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="161" font-size="13" text-anchor="end" fill="#1565c0" font-weight="bold" >2</text>
+  <path d="M 90,192 L 441,192" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414,197 L 765,197" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 738,192 L 840,192" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="197" font-size="13" text-anchor="end" fill="#c62828" font-weight="bold" >1</text>
+  <path d="M 90,228 L 400.5,228" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 373.5,233 L 724.5,233" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 697.5,228 L 840,228" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="233" font-size="13" text-anchor="end" fill="#1565c0" font-weight="bold" >2</text>
+  <path d="M 90,264 L 441,264" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414,269 L 765,269" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 738,264 L 840,264" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="269" font-size="13" text-anchor="end" fill="#c62828" font-weight="bold" >1</text>
+  <path d="M 90,300 L 400.5,300" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 373.5,305 L 724.5,305" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 697.5,300 L 840,300" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="305" font-size="13" text-anchor="end" fill="#1565c0" font-weight="bold" >2</text>
+  <path d="M 90,336 L 441,336" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 414,341 L 765,341" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 738,336 L 840,336" fill="none" stroke="#c62828" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="341" font-size="13" text-anchor="end" fill="#c62828" font-weight="bold" >1</text>
+  <path d="M 90,372 L 400.5,372" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 373.5,377 L 724.5,377" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 697.5,372 L 840,372" fill="none" stroke="#1565c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="60" y="377" font-size="13" text-anchor="end" fill="#1565c0" font-weight="bold" >2</text>
+  <line x1="90" y1="54" x2="90" y2="82" stroke="#37474f" stroke-width="0.8" />
+  <line x1="441" y1="54" x2="441" y2="72" stroke="#37474f" stroke-width="0.8" />
+  <line x1="84" y1="60" x2="447" y2="60" stroke="#37474f" stroke-width="1" />
+  <line x1="86" y1="64" x2="94" y2="56" stroke="#37474f" stroke-width="1.2" />
+  <line x1="437" y1="64" x2="445" y2="56" stroke="#37474f" stroke-width="1.2" />
+  <text x="265.5" y="55" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" >11700</text>
+  <line x1="387" y1="420" x2="387" y2="440" stroke="#37474f" stroke-width="0.8" />
+  <line x1="427.5" y1="420" x2="427.5" y2="440" stroke="#37474f" stroke-width="0.8" />
+  <line x1="381" y1="434" x2="433.5" y2="434" stroke="#37474f" stroke-width="1" />
+  <line x1="383" y1="438" x2="391" y2="430" stroke="#37474f" stroke-width="1.2" />
+  <line x1="423.5" y1="438" x2="431.5" y2="430" stroke="#37474f" stroke-width="1.2" />
+  <text x="407.2" y="454" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" font-style="italic">1.5·l</text>
+  <line x1="711" y1="420" x2="711" y2="440" stroke="#37474f" stroke-width="0.8" />
+  <line x1="751.5" y1="420" x2="751.5" y2="440" stroke="#37474f" stroke-width="0.8" />
+  <line x1="705" y1="434" x2="757.5" y2="434" stroke="#37474f" stroke-width="1" />
+  <line x1="707" y1="438" x2="715" y2="430" stroke="#37474f" stroke-width="1.2" />
+  <line x1="747.5" y1="438" x2="755.5" y2="430" stroke="#37474f" stroke-width="1.2" />
+  <text x="731.2" y="454" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" font-style="italic">1.5·l</text>
+  <line x1="414" y1="96" x2="414" y2="116" stroke="#37474f" stroke-width="0.8" />
+  <line x1="441" y1="96" x2="441" y2="116" stroke="#37474f" stroke-width="0.8" />
+  <line x1="408" y1="102" x2="447" y2="102" stroke="#37474f" stroke-width="1" />
+  <line x1="410" y1="106" x2="418" y2="98" stroke="#37474f" stroke-width="1.2" />
+  <line x1="437" y1="106" x2="445" y2="98" stroke="#37474f" stroke-width="1.2" />
+  <text x="451" y="106" font-size="13" text-anchor="start" fill="#263238" font-weight="normal" font-style="italic">l</text>
+</svg>

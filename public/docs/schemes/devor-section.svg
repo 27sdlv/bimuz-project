@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 440" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+  <rect x="60" y="70" width="640" height="300" fill="#eceff1" stroke="none" stroke-width="1.5"/>
+  <line x1="56" y1="70" x2="704" y2="70" stroke="#78909c" stroke-width="1.5" stroke-linecap="butt"/>
+  <line x1="56" y1="370" x2="704" y2="370" stroke="#78909c" stroke-width="1.5" stroke-linecap="butt"/>
+  <polyline points="60,62 60,208 54,216 66,224 60,232 60,378" fill="none" stroke="#90a4ae" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="700,62 700,208 694,216 706,224 700,232 700,378" fill="none" stroke="#90a4ae" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="66" y="118" width="628" height="12" rx="6" fill="#1565c0"/>
+  <circle cx="150" cy="137.2" r="7.2" fill="#c62828"/>
+  <circle cx="380" cy="137.2" r="7.2" fill="#c62828"/>
+  <circle cx="610" cy="137.2" r="7.2" fill="#c62828"/>
+  <rect x="66" y="310" width="628" height="12" rx="6" fill="#1565c0"/>
+  <circle cx="150" cy="302.8" r="7.2" fill="#c62828"/>
+  <circle cx="380" cy="302.8" r="7.2" fill="#c62828"/>
+  <circle cx="610" cy="302.8" r="7.2" fill="#c62828"/>
+  <text x="262" y="175" font-size="14" text-anchor="middle" fill="#263238">Ø<tspan font-size="10" dy="4">h</tspan></text>
+  <line x1="262" y1="160" x2="262" y2="129" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <circle cx="262" cy="129" r="1.8" fill="#37474f"/>
+  <text x="380" y="210" font-size="14" text-anchor="middle" fill="#263238">Ø<tspan font-size="10" dy="4">v</tspan></text>
+  <line x1="380" y1="195" x2="380" y2="143.4" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <circle cx="380" cy="143.4" r="1.8" fill="#37474f"/>
+  <line x1="740" y1="64" x2="740" y2="124" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="709" y1="70" x2="745" y2="70" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="736" y1="74" x2="744" y2="66" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <line x1="701" y1="118" x2="745" y2="118" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="736" y1="122" x2="744" y2="114" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <text x="748" y="98.5" font-size="13" text-anchor="start" fill="#263238">c</text>
+  <line x1="740" y1="316" x2="740" y2="376" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="701" y1="322" x2="745" y2="322" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="736" y1="326" x2="744" y2="318" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <line x1="709" y1="370" x2="745" y2="370" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="736" y1="374" x2="744" y2="366" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <text x="748" y="350.5" font-size="13" text-anchor="start" fill="#263238">c</text>
+  <line x1="800" y1="64" x2="800" y2="376" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="755" y1="70" x2="805" y2="70" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="796" y1="74" x2="804" y2="66" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <line x1="755" y1="370" x2="805" y2="370" stroke="#37474f" stroke-width="1" stroke-linecap="butt"/>
+  <line x1="796" y1="374" x2="804" y2="366" stroke="#37474f" stroke-width="1.3" stroke-linecap="butt"/>
+  <text x="808" y="224.5" font-size="13" text-anchor="start" fill="#263238">t</text>
+</svg>

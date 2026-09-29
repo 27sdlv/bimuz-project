@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#37474f"/></marker>
+<marker id="arrb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#1e88e5"/></marker>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#90a4ae" stroke-width="1"/></pattern>
+</defs>
+<line x1="280.4" y1="240.9" x2="540.1" y2="157.2" stroke="#37474f" stroke-width="1.6" marker-end="url(#arr)" stroke-dasharray="8 5"/>
+<line x1="281.5" y1="295.4" x2="538.8" y2="366.9" stroke="#37474f" stroke-width="1.6" marker-end="url(#arr)" stroke-dasharray="8 5"/>
+<g transform="translate(190,270) rotate(0)" opacity="1.0">
+<rect x="-55" y="-80" width="110" height="160" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+<rect x="-55" y="-80" width="110" height="160" fill="url(#hatch)" stroke="none" stroke-width="0" />
+<rect x="-43" y="-68" width="86" height="136" rx="5" fill="none" stroke="#2e7d32" stroke-width="2.8"/>
+<circle cx="-35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="-35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="-35" cy="60" r="7" fill="#c62828"/>
+<circle cx="35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="35" cy="60" r="7" fill="#c62828"/>
+<line x1="0" y1="0" x2="24" y2="0" stroke="#263238" stroke-width="1.6" marker-end="url(#arr)"/>
+</g>
+<circle cx="190" cy="270" r="5" fill="#ffffff" stroke="#263238" stroke-width="1.8" />
+<line x1="181" y1="270" x2="199" y2="270" stroke="#263238" stroke-width="1" />
+<line x1="190" y1="261" x2="190" y2="279" stroke="#263238" stroke-width="1" />
+<g transform="translate(640,125) rotate(0)" opacity="1.0">
+<rect x="-55" y="-80" width="110" height="160" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+<rect x="-55" y="-80" width="110" height="160" fill="url(#hatch)" stroke="none" stroke-width="0" />
+<rect x="-43" y="-68" width="86" height="136" rx="5" fill="none" stroke="#2e7d32" stroke-width="2.8"/>
+<circle cx="-35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="-35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="-35" cy="60" r="7" fill="#c62828"/>
+<circle cx="35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="35" cy="60" r="7" fill="#c62828"/>
+<line x1="0" y1="0" x2="24" y2="0" stroke="#263238" stroke-width="1.6" marker-end="url(#arr)"/>
+</g>
+<circle cx="640" cy="125" r="5" fill="#ffffff" stroke="#263238" stroke-width="1.8" />
+<line x1="631" y1="125" x2="649" y2="125" stroke="#263238" stroke-width="1" />
+<line x1="640" y1="116" x2="640" y2="134" stroke="#263238" stroke-width="1" />
+<g transform="translate(640,395) rotate(-90)" opacity="1.0">
+<rect x="-55" y="-80" width="110" height="160" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+<rect x="-55" y="-80" width="110" height="160" fill="url(#hatch)" stroke="none" stroke-width="0" />
+<rect x="-43" y="-68" width="86" height="136" rx="5" fill="none" stroke="#2e7d32" stroke-width="2.8"/>
+<circle cx="-35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="-35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="-35" cy="60" r="7" fill="#c62828"/>
+<circle cx="35" cy="-60" r="7" fill="#c62828"/>
+<circle cx="35" cy="0" r="6" fill="#1565c0"/>
+<circle cx="35" cy="60" r="7" fill="#c62828"/>
+<line x1="0" y1="0" x2="24" y2="0" stroke="#263238" stroke-width="1.6" marker-end="url(#arr)"/>
+</g>
+<circle cx="640" cy="395" r="5" fill="#ffffff" stroke="#263238" stroke-width="1.8" />
+<line x1="631" y1="395" x2="649" y2="395" stroke="#263238" stroke-width="1" />
+<line x1="640" y1="386" x2="640" y2="404" stroke="#263238" stroke-width="1" />
+<text x="204" y="258" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" >X</text>
+<text x="654" y="113" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" >X</text>
+<text x="626" y="383" font-size="13" text-anchor="middle" fill="#263238" font-weight="normal" >X</text>
+<path d="M746,395 A106,106 0 0 0 640,289" fill="none" stroke="#1e88e5" stroke-width="1.8" marker-end="url(#arrb)"/>
+<line x1="640" y1="395" x2="756" y2="395" stroke="#1e88e5" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="640" y1="335" x2="640" y2="287" stroke="#1e88e5" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="724.3" y="312.7" font-size="14" text-anchor="start" fill="#1e88e5" font-weight="bold" >90°</text>
+</svg>

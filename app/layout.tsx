@@ -11,7 +11,7 @@ const bebasNeue = Bebas_Neue({
 });
 
 const manrope = Manrope({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-manrope",
   display: "swap",
 });

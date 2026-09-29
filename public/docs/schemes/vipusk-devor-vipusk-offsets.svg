@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#37474f"/></marker>
+<marker id="arrb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="#1e88e5"/></marker>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#90a4ae" stroke-width="1"/></pattern>
+</defs>
+<rect x="45" y="70" width="810" height="330" fill="#eceff1" stroke="#78909c" stroke-width="1.5" />
+<rect x="110" y="142" width="700" height="196" fill="none" stroke="#90a4ae" stroke-width="1.2" stroke-dasharray="6 4"/>
+<line x1="130" y1="240" x2="790" y2="240" stroke="#37474f" stroke-width="1.2" stroke-dasharray="12 4 2 4"/>
+<line x1="700" y1="240" x2="750" y2="240" stroke="#37474f" stroke-width="1.8" marker-end="url(#arr)"/>
+<circle cx="130" cy="240" r="6" fill="#ffffff" stroke="#263238" stroke-width="1.8" />
+<line x1="126" y1="236" x2="134" y2="244" stroke="#263238" stroke-width="1.5" />
+<line x1="126" y1="244" x2="134" y2="236" stroke="#263238" stroke-width="1.5" />
+<circle cx="790" cy="240" r="6" fill="#ffffff" stroke="#263238" stroke-width="1.8" />
+<line x1="786" y1="236" x2="794" y2="244" stroke="#263238" stroke-width="1.5" />
+<line x1="786" y1="244" x2="794" y2="236" stroke="#263238" stroke-width="1.5" />
+<text x="122" y="226" font-size="14" text-anchor="end" fill="#263238" font-weight="bold" >P1</text>
+<text x="798" y="226" font-size="14" text-anchor="start" fill="#263238" font-weight="bold" >P2</text>
+<circle cx="160" cy="312" r="7" fill="#c62828"/>
+<text x="160" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="160" cy="168" r="5.5" fill="#1565c0"/>
+<text x="160" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="160" y1="176" x2="160" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="220" cy="312" r="5.5" fill="#1565c0"/>
+<text x="220" y="338" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<circle cx="220" cy="168" r="7" fill="#c62828"/>
+<text x="220" y="152" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<line x1="220" y1="176" x2="220" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="280" cy="312" r="7" fill="#c62828"/>
+<text x="280" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="280" cy="168" r="5.5" fill="#1565c0"/>
+<text x="280" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="280" y1="176" x2="280" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="340" cy="312" r="5.5" fill="#1565c0"/>
+<text x="340" y="338" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<circle cx="340" cy="168" r="7" fill="#c62828"/>
+<text x="340" y="152" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<line x1="340" y1="176" x2="340" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="400" cy="312" r="7" fill="#c62828"/>
+<text x="400" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="400" cy="168" r="5.5" fill="#1565c0"/>
+<text x="400" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="400" y1="176" x2="400" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="460" cy="312" r="5.5" fill="#1565c0"/>
+<text x="460" y="338" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<circle cx="460" cy="168" r="7" fill="#c62828"/>
+<text x="460" y="152" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<line x1="460" y1="176" x2="460" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="520" cy="312" r="7" fill="#c62828"/>
+<text x="520" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="520" cy="168" r="5.5" fill="#1565c0"/>
+<text x="520" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="520" y1="176" x2="520" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="580" cy="312" r="5.5" fill="#1565c0"/>
+<text x="580" y="338" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<circle cx="580" cy="168" r="7" fill="#c62828"/>
+<text x="580" y="152" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<line x1="580" y1="176" x2="580" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="640" cy="312" r="7" fill="#c62828"/>
+<text x="640" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="640" cy="168" r="5.5" fill="#1565c0"/>
+<text x="640" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="640" y1="176" x2="640" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="700" cy="312" r="5.5" fill="#1565c0"/>
+<text x="700" y="338" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<circle cx="700" cy="168" r="7" fill="#c62828"/>
+<text x="700" y="152" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<line x1="700" y1="176" x2="700" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<circle cx="760" cy="312" r="7" fill="#c62828"/>
+<text x="760" y="338" font-size="13" text-anchor="middle" fill="#c62828" font-weight="bold" >L</text>
+<circle cx="760" cy="168" r="5.5" fill="#1565c0"/>
+<text x="760" y="152" font-size="13" text-anchor="middle" fill="#1565c0" font-weight="bold" >S</text>
+<line x1="760" y1="176" x2="760" y2="304" stroke="#90a4ae" stroke-width="0.6" stroke-dasharray="2 3"/>
+<line x1="122" y1="168" x2="86" y2="168" stroke="#37474f" stroke-width="0.8" />
+<line x1="151" y1="312" x2="86" y2="312" stroke="#37474f" stroke-width="0.8" />
+<line x1="151" y1="168" x2="122" y2="168" stroke="#37474f" stroke-width="0.8" />
+<line x1="114" y1="240" x2="86" y2="240" stroke="#37474f" stroke-width="0.8" />
+<line x1="90" y1="162" x2="90" y2="246" stroke="#37474f" stroke-width="1" />
+<line x1="93.5" y1="164.5" x2="86.5" y2="171.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="93.5" y1="236.5" x2="86.5" y2="243.5" stroke="#37474f" stroke-width="1.4" />
+<text x="84" y="204" font-size="13" text-anchor="end" dominant-baseline="middle" fill="#263238" transform="rotate(0 84 204)">+150</text>
+<line x1="90" y1="234" x2="90" y2="318" stroke="#37474f" stroke-width="1" />
+<line x1="93.5" y1="236.5" x2="86.5" y2="243.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="93.5" y1="308.5" x2="86.5" y2="315.5" stroke="#37474f" stroke-width="1.4" />
+<text x="84" y="276" font-size="13" text-anchor="end" dominant-baseline="middle" fill="#263238" transform="rotate(0 84 276)">−150</text>
+<line x1="130" y1="248" x2="130" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="790" y1="248" x2="790" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="160" y1="348" x2="160" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="220" y1="348" x2="220" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="280" y1="348" x2="280" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="760" y1="348" x2="760" y2="364" stroke="#37474f" stroke-width="0.8" />
+<line x1="124" y1="360" x2="166" y2="360" stroke="#37474f" stroke-width="1" />
+<line x1="126.5" y1="356.5" x2="133.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="156.5" y1="356.5" x2="163.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<text x="145" y="369" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="#263238" transform="rotate(0 145 369)">50</text>
+<line x1="154" y1="360" x2="226" y2="360" stroke="#37474f" stroke-width="1" />
+<line x1="156.5" y1="356.5" x2="163.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="216.5" y1="356.5" x2="223.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<text x="190" y="369" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="#263238" transform="rotate(0 190 369)">200</text>
+<line x1="214" y1="360" x2="286" y2="360" stroke="#37474f" stroke-width="1" />
+<line x1="216.5" y1="356.5" x2="223.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="276.5" y1="356.5" x2="283.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<text x="250" y="369" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="#263238" transform="rotate(0 250 369)">200</text>
+<line x1="754" y1="360" x2="796" y2="360" stroke="#37474f" stroke-width="1" />
+<line x1="756.5" y1="356.5" x2="763.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="786.5" y1="356.5" x2="793.5" y2="363.5" stroke="#37474f" stroke-width="1.4" />
+<text x="775" y="369" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="#263238" transform="rotate(0 775 369)">≥ 50</text>
+<line x1="220" y1="138" x2="220" y2="106" stroke="#37474f" stroke-width="0.8" />
+<line x1="340" y1="138" x2="340" y2="106" stroke="#37474f" stroke-width="0.8" />
+<line x1="214" y1="110" x2="346" y2="110" stroke="#37474f" stroke-width="1" />
+<line x1="216.5" y1="106.5" x2="223.5" y2="113.5" stroke="#37474f" stroke-width="1.4" />
+<line x1="336.5" y1="106.5" x2="343.5" y2="113.5" stroke="#37474f" stroke-width="1.4" />
+<text x="280" y="101" font-size="13" text-anchor="middle" dominant-baseline="middle" fill="#263238" transform="rotate(0 280 101)">400</text>
+<circle cx="330" cy="432" r="7" fill="#c62828"/>
+<text x="344" y="437" font-size="13" text-anchor="start" fill="#263238" font-weight="normal" >L = 600</text>
+<circle cx="470" cy="432" r="5.5" fill="#1565c0"/>
+<text x="484" y="437" font-size="13" text-anchor="start" fill="#263238" font-weight="normal" >S = 300</text>
+</svg>
