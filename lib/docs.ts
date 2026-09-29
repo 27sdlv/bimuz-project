@@ -58,6 +58,35 @@ export const SECTIONS: DocSection[] = [
       "armatura-audit",
     ],
   },
+  {
+    id: "hujjatlar",
+    title: { uz: "Лойиҳавий ҳужжатлар", ru: "Проектная документация" },
+    desc: {
+      uz: "Листлар ва жадваллар: варақ рақамлаш, PDF/DWG/Excel экспорт, штамп, ведомостлар, спецификациялар, жадвал ва листларни нусхалаш.",
+      ru: "Листы и спецификации: нумерация листов, экспорт в PDF/DWG/Excel, штамп, ведомости, спецификации, копирование спецификаций и листов.",
+    },
+    slugs: [
+      "varaq-raqamlash",
+      "excel-varaqlar",
+      "varaq-nusxa",
+      "shtamp",
+      "korinish-tekislash",
+      "topish-almashtirish",
+      "pdf-eksport",
+      "dwg-eksport",
+      "excel-eksport",
+      "vedomost-chertezh",
+      "vedomost-otdelka",
+      "vedomost-peremychka",
+      "spetsifikatsiya",
+      "jadval-nusxa",
+      "xona-otdelka",
+      "pozitsiyalash",
+      "vrs-kalibrovka",
+      "beton-armatura",
+      "markalash",
+    ],
+  },
 ];
 
 const CONTENT = path.join(process.cwd(), "content", "docs");
