@@ -16,6 +16,21 @@ type Feedback = {
   licenseStatus?: string; pluginVersion?: string; revitVersion?: string; deviceName?: string; hasScreenshot: boolean;
 };
 type Stats = Record<string, any>;
+type SecEvent = { at: string; kind: string; ip: string; deviceId?: string; deviceName?: string; email?: string; key?: string; version?: string };
+type Security = {
+  events: SecEvent[];
+  ips: { ip: string; count: number; badKeys: number; admin: number; devices: number; last: string }[];
+  trialAbuse: { deviceId: string; deviceName?: string; attempts: number; emails: string[]; last: string }[];
+  sharedDevices: { deviceId: string; emails: string[] }[];
+};
+const KIND: Record<string, string> = {
+  "admin:bad_token": "Админ: нотўғри токен", "admin:blocked": "Админ: IP блокланган",
+  "activate:not_found": "Мавжуд бўлмаган калит", "refresh:not_found": "Мавжуд бўлмаган калит (refresh)",
+  "activate:revoked": "Блокланган калит", "refresh:revoked": "Блокланган калит (refresh)",
+  "activate:device_limit": "Қурилма чегараси ошди", "trial:trial_used": "Трайл қайта уриниш",
+  "deactivate:removal_limit": "Қурилма алмаштириш чегараси", "refresh:device_removed": "Чиқарилган қурилма",
+  "activate:bad_request": "Сохта сўров (ID йўқ)", "refresh:bad_request": "Сохта сўров (ID йўқ)", "trial:bad_request": "Сохта сўров (ID йўқ)",
+};
 
 const fmtDate = (s?: string) => (s ? new Date(s).toLocaleDateString("ru-RU") : "—");
 const fmtDT = (s?: string) => (s ? new Date(s).toLocaleString("ru-RU", { dateStyle: "short", timeStyle: "short" }) : "—");
@@ -35,11 +50,12 @@ export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState(false);
-  const [tab, setTab] = useState<"stats" | "users" | "orders" | "feedback">("stats");
+  const [tab, setTab] = useState<"stats" | "users" | "orders" | "feedback" | "security">("stats");
   const [stats, setStats] = useState<Stats | null>(null);
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [sec, setSec] = useState<Security | null>(null);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("all");
   const [open, setOpen] = useState<string | null>(null);
@@ -69,6 +85,7 @@ export default function AdminPage() {
       setOrders(o);
       setFeedback(f);
       setAuthed(true);
+      try { setSec(await call("/admin/security")); } catch { setSec(null); }
     } catch (e: any) {
       setErr(e.message === "Failed to fetch" ? "Серверга уланиб бўлмади (CORS ёки тармоқ)" : e.message);
     } finally {
@@ -95,7 +112,7 @@ export default function AdminPage() {
     return accounts
       .map((a) => ({ a, st: statusOf(a), last: a.devices.reduce((m, d) => Math.max(m, new Date(d.lastSeen).getTime()), 0) }))
       .filter(({ a, st }) => {
-        if (term && !(a.email + " " + (a.phone || "") + " " + a.licenseKey).toLowerCase().includes(term)) return false;
+        if (term && !(a.email + " " + (a.phone || "") + " " + a.licenseKey + " " + a.devices.map((d) => d.id + " " + (d.name || "")).join(" ")).toLowerCase().includes(term)) return false;
         const left = new Date(a.paidUntil).getTime() - Date.now();
         switch (filter) {
           case "trial": return st.key === "trial";
@@ -136,7 +153,7 @@ export default function AdminPage() {
       <header className="adm-head">
         <h1>BIMUz Admin</h1>
         <nav>
-          {([["stats", "Умумий"], ["users", `Фойдаланувчилар (${accounts.length})`], ["orders", `Тўловлар (${orders.length})`], ["feedback", `Фидбек (${feedback.length})`]] as const).map(([k, l]) => (
+          {([["stats", "Умумий"], ["users", `Фойдаланувчилар (${accounts.length})`], ["orders", `Тўловлар (${orders.length})`], ["feedback", `Фидбек (${feedback.length})`], ["security", `Хавфсизлик${sec ? " (" + sec.events.length + ")" : ""}`]] as const).map(([k, l]) => (
             <button key={k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{l}</button>
           ))}
         </nav>
@@ -164,7 +181,7 @@ export default function AdminPage() {
       {tab === "users" && (
         <section>
           <div className="adm-tools">
-            <input placeholder="Қидириш: e-mail, телефон, калит…" value={q} onChange={(e) => setQ(e.target.value)} />
+            <input placeholder="Қидириш: e-mail, телефон, калит, қурилма ID…" value={q} onChange={(e) => setQ(e.target.value)} />
             <select value={filter} onChange={(e) => setFilter(e.target.value)}>
               <option value="all">Барчаси</option>
               <option value="trial">Трайл</option>
@@ -178,12 +195,13 @@ export default function AdminPage() {
           </div>
           <div className="adm-scroll">
             <table>
-              <thead><tr><th>E-mail</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
+              <thead><tr><th>E-mail</th><th>Калит</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
               <tbody>
                 {rows.map(({ a, st, last }) => (
                   <Fragment key={a.email}>
                     <tr onClick={() => setOpen(open === a.email ? null : a.email)} className={"row " + st.key}>
                       <td>{a.email}{a.companyId && <span className="adm-tag">компания</span>}</td>
+                      <td className="mono">…{a.licenseKey.slice(-6)}</td>
                       <td><span className={"adm-st " + st.key}>{st.label}</span></td>
                       <td>{a.plan === "none" ? "—" : fmtDate(a.paidUntil)}</td>
                       <td className={a.devices.length >= 3 ? "warn" : ""}>{a.devices.length}</td>
@@ -192,10 +210,10 @@ export default function AdminPage() {
                       <td>{fmtDate(a.createdAt)}</td>
                     </tr>
                     {open === a.email && (
-                      <tr className="detail"><td colSpan={7}>
+                      <tr className="detail"><td colSpan={8}>
                         <div className="adm-det">
                           <div><b>Калит:</b> {a.licenseKey} {a.phone && <>· <b>Тел:</b> {a.phone}</>}</div>
-                          <ul>{a.devices.map((d) => <li key={d.id}>{d.name || d.id.slice(0, 8)} — {d.version || "?"} — охирги: {fmtDT(d.lastSeen)}</li>)}{a.devices.length === 0 && <li>Қурилма йўқ</li>}</ul>
+                          <ul>{a.devices.map((d) => <li key={d.id}><b>{d.name || "—"}</b> · ID <span className="mono">{d.id}</span> · {d.version || "?"} · охирги: {fmtDT(d.lastSeen)}</li>)}{a.devices.length === 0 && <li>Қурилма йўқ</li>}</ul>
                           <div className="adm-act">
                             <button onClick={() => act("/admin/extend", { email: a.email, months: 0, days: 14 }, `${a.email}: +14 кун`)}>+14 кун</button>
                             <button onClick={() => act("/admin/extend", { email: a.email, months: 1, days: 0 }, `${a.email}: +1 ой`)}>+1 ой</button>
@@ -243,11 +261,55 @@ export default function AdminPage() {
           ))}
         </section>
       )}
+      {tab === "security" && (
+        <section className="adm-sec">
+          {!sec && <p className="adm-hint">Хавфсизлик журнали ҳали серверда йўқ (серверни янгиланг).</p>}
+          {sec && (
+            <>
+              <h3>Шубҳали IP манзиллар (7 кун)</h3>
+              <div className="adm-scroll"><table>
+                <thead><tr><th>IP</th><th>Жами</th><th>Нотўғри калит</th><th>Админ уриниш</th><th>Қурилмалар</th><th>Охирги</th></tr></thead>
+                <tbody>{sec.ips.map((x) => (
+                  <tr key={x.ip} className={x.badKeys >= 5 || x.admin > 0 ? "row revoked" : ""}><td className="mono">{x.ip}</td><td>{x.count}</td><td>{x.badKeys}</td><td>{x.admin}</td><td>{x.devices}</td><td>{fmtDT(x.last)}</td></tr>
+                ))}{sec.ips.length === 0 && <tr><td colSpan={6}>Ҳодиса йўқ</td></tr>}</tbody>
+              </table></div>
+
+              <h3>Трайлни қайта олишга уринган қурилмалар</h3>
+              <div className="adm-scroll"><table>
+                <thead><tr><th>Қурилма</th><th>ID</th><th>Уриниш</th><th>E-mail'лар</th><th>Охирги</th></tr></thead>
+                <tbody>{sec.trialAbuse.map((x) => (
+                  <tr key={x.deviceId}><td>{x.deviceName || "—"}</td><td className="mono">{x.deviceId}</td><td>{x.attempts}</td><td>{x.emails.join(", ")}</td><td>{fmtDT(x.last)}</td></tr>
+                ))}{sec.trialAbuse.length === 0 && <tr><td colSpan={5}>Йўқ</td></tr>}</tbody>
+              </table></div>
+
+              <h3>Бир қурилма — бир нечта аккаунт</h3>
+              <div className="adm-scroll"><table>
+                <thead><tr><th>Қурилма ID</th><th>E-mail'лар</th></tr></thead>
+                <tbody>{sec.sharedDevices.map((x) => (
+                  <tr key={x.deviceId}><td className="mono">{x.deviceId}</td><td>{x.emails.join(", ")}</td></tr>
+                ))}{sec.sharedDevices.length === 0 && <tr><td colSpan={2}>Йўқ</td></tr>}</tbody>
+              </table></div>
+
+              <h3>Охирги ҳодисалар</h3>
+              <div className="adm-scroll"><table>
+                <thead><tr><th>Вақт</th><th>Ҳодиса</th><th>IP</th><th>Қурилма</th><th>E-mail</th><th>Калит</th><th>Версия</th></tr></thead>
+                <tbody>{sec.events.map((e, i) => (
+                  <tr key={i}><td>{fmtDT(e.at)}</td><td>{KIND[e.kind] || e.kind}</td><td className="mono">{e.ip}</td>
+                    <td>{e.deviceName || ""} <span className="mono">{e.deviceId || ""}</span></td><td>{e.email || ""}</td><td className="mono">{e.key || ""}</td><td>{e.version || ""}</td></tr>
+                ))}{sec.events.length === 0 && <tr><td colSpan={7}>Ҳодиса йўқ</td></tr>}</tbody>
+              </table></div>
+              <p className="adm-hint">Ҳодисалар: мавжуд бўлмаган/блокланган калит, қурилма чегараси, трайлни қайта олиш, сохта сўров, админ токен хатолари. Админга 3 ва 8 марта хато токен киритилса, Telegram'га хабар келади.</p>
+            </>
+          )}
+        </section>
+      )}
     </main>
   );
 }
 
 const CSS = `
+.adm .mono{font-family:ui-monospace,Consolas,monospace;font-size:12px;word-break:break-all}
+.adm-sec h3{font-size:15px;margin:18px 0 8px}
 .adm{min-height:100vh;background:#0f1720;color:#e6ebf0;font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:16px 20px 40px}
 .adm h1{font-size:18px;margin:0}
 .adm-login{max-width:340px;margin:18vh auto 0;display:flex;flex-direction:column;gap:12px}
