@@ -2085,7 +2085,7 @@ ul {
 .doc-table th { background: #eef1f4; font-weight: 700; }
 .doc-table td:first-child { width: 34%; font-weight: 600; }
 .doc-figure { margin: 22px 0; background: #fff; border: 1px solid #dde3e8; padding: 12px; }
-.doc-figure img { width: 100%; height: auto; display: block; }
+.doc-figure img { max-width: 100%; width: auto; height: auto; display: block; margin: 0 auto; }
 .doc-figure figcaption { font-size: 0.85rem; color: #5a6b7b; margin-top: 8px; text-align: center; }
 .doc-f1 { margin-top: 48px; font-size: 0.85rem; color: #6b7c8c; border-top: 1px solid #d9dfe4; padding-top: 16px; }
 .doc-index section { margin-top: 32px; }
