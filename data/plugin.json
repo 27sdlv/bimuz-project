@@ -19,9 +19,9 @@
   },
   "latest": {
     "ok": true,
-    "version": "1.0.10.14",
-    "notes": "• Колонна арматуралаш формаси Revit 2025–2027 да тўғри жойлашади (DPI)\n• Девор арматуралаш: бир хил стерженлар Rebar set (массив) бўлиб яратилади",
+    "version": "1.0.10.20",
+    "notes": "Litsenziya kaliti yo'qolishi tuzatildi + avto-tiklash qo'shildi",
     "published": "30.09.2026",
-    "size": 14762777
+    "size": 14763875
   }
 }
