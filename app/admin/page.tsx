@@ -5,7 +5,7 @@ import { Fragment, useCallback, useMemo, useState } from "react";
 const SERVER = "https://license.bimuz.uz";
 const DAY = 86400000;
 
-type Device = { id: string; name: string; lastSeen: string; version: string };
+type Device = { id: string; name: string; lastSeen: string; version: string; lastIp?: string };
 type Account = {
   email: string; phone?: string; licenseKey: string; plan: string; paidUntil: string;
   revoked: boolean; trialUsed: boolean; createdAt: string; companyId?: string; devices: Device[];
@@ -195,7 +195,7 @@ export default function AdminPage() {
           </div>
           <div className="adm-scroll">
             <table>
-              <thead><tr><th>E-mail</th><th>Калит</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Қурилма номи / ID</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
+              <thead><tr><th>E-mail</th><th>Калит</th><th>Ҳолат</th><th>Тугайди</th><th>Қурилма</th><th>Қурилма номи / ID</th><th>IP</th><th>Охирги кириш</th><th>Версия</th><th>Рўйхатдан ўтган</th></tr></thead>
               <tbody>
                 {rows.map(({ a, st, last }) => (
                   <Fragment key={a.email}>
@@ -208,15 +208,16 @@ export default function AdminPage() {
                       <td className="ids">{a.devices.length === 0 ? "—" : a.devices.map((d) => (
                         <div key={d.id} title={d.id}>{d.name || "—"} <span className="mono">{d.id.slice(0, 10)}…</span></div>
                       ))}</td>
+                      <td className="mono">{Array.from(new Set(a.devices.map((d) => d.lastIp).filter(Boolean))).join(", ") || "—"}</td>
                       <td>{last ? fmtDT(new Date(last).toISOString()) : "—"}</td>
                       <td>{a.devices.map((d) => d.version).filter(Boolean).sort().slice(-1)[0] || "—"}</td>
                       <td>{fmtDate(a.createdAt)}</td>
                     </tr>
                     {open === a.email && (
-                      <tr className="detail"><td colSpan={9}>
+                      <tr className="detail"><td colSpan={10}>
                         <div className="adm-det">
                           <div><b>Калит:</b> {a.licenseKey} {a.phone && <>· <b>Тел:</b> {a.phone}</>}</div>
-                          <ul>{a.devices.map((d) => <li key={d.id}><b>{d.name || "—"}</b> · ID <span className="mono">{d.id}</span> · {d.version || "?"} · охирги: {fmtDT(d.lastSeen)}</li>)}{a.devices.length === 0 && <li>Қурилма йўқ</li>}</ul>
+                          <ul>{a.devices.map((d) => <li key={d.id}><b>{d.name || "—"}</b> · ID <span className="mono">{d.id}</span> · {d.version || "?"} · IP <span className="mono">{d.lastIp || "?"}</span> · охирги: {fmtDT(d.lastSeen)}</li>)}{a.devices.length === 0 && <li>Қурилма йўқ</li>}</ul>
                           <div className="adm-act">
                             <button onClick={() => act("/admin/extend", { email: a.email, months: 0, days: 14 }, `${a.email}: +14 кун`)}>+14 кун</button>
                             <button onClick={() => act("/admin/extend", { email: a.email, months: 1, days: 0 }, `${a.email}: +1 ой`)}>+1 ой</button>
@@ -254,15 +255,27 @@ export default function AdminPage() {
       )}
 
       {tab === "feedback" && (
-        <section className="adm-fb">
-          {feedback.map((f) => (
-            <article key={f.id}>
-              <div className="adm-fb-h"><b>F{f.id}</b> · {f.kind} · {fmtDT(f.createdAt)} · {f.email || f.contact || "—"} · {f.licenseStatus || ""}</div>
-              <div className="adm-fb-m">{f.pluginVersion} · Revit {f.revitVersion} · {f.tool || ""}{f.hasScreenshot && " · 📎 скриншот"}</div>
-              <p>{f.text}</p>
-            </article>
-          ))}
-        </section>
+        <div className="adm-scroll">
+          <table>
+            <thead><tr><th>№</th><th>Сана</th><th>Тур</th><th>E-mail</th><th>Ҳолат</th><th>Версия / Revit</th><th>Асбоб</th><th>Матн</th><th>📎</th></tr></thead>
+            <tbody>
+              {feedback.map((f) => (
+                <tr key={f.id}>
+                  <td className="mono">F{f.id}</td>
+                  <td>{fmtDT(f.createdAt)}</td>
+                  <td><span className={"adm-st " + (f.kind === "error" ? "expired" : f.kind === "idea" ? "trial" : "")}>{f.kind}</span></td>
+                  <td>{f.email || f.contact || "—"}</td>
+                  <td>{f.licenseStatus || "—"}</td>
+                  <td>{f.pluginVersion || "?"}{f.revitVersion ? " / R" + f.revitVersion : ""}</td>
+                  <td>{f.tool || "—"}</td>
+                  <td style={{ maxWidth: 460, whiteSpace: "normal" }}>{f.text}</td>
+                  <td>{f.hasScreenshot ? "📎" : ""}</td>
+                </tr>
+              ))}
+              {feedback.length === 0 && <tr><td colSpan={9}>Фидбек йўқ</td></tr>}
+            </tbody>
+          </table>
+        </div>
       )}
       {tab === "security" && (
         <section className="adm-sec">
