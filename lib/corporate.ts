@@ -7,6 +7,7 @@ export const LICENSE_API =
   process.env.NEXT_PUBLIC_BIMUZ_LICENSE_SERVER || "https://license.bimuz.uz";
 
 export type SeatDiscount = { minSeats: number; percent: number };
+export type TermPrice = { months: number; monthly: number };
 
 export type CorporatePricing = {
   monthly: number;
@@ -15,6 +16,7 @@ export type CorporatePricing = {
   maxSeats: number;
   terms: number[];
   discounts: SeatDiscount[];
+  termPrices: TermPrice[];
   maxDevicesPerSeat: number;
 };
 
@@ -34,12 +36,20 @@ const FALLBACK_DISCOUNTS: SeatDiscount[] = [
   { minSeats: 20, percent: 20 },
 ];
 
+// Muddat qancha qisqa bo'lsa — oylik narx shuncha qimmat (server bilan bir xil).
+const FALLBACK_TERM_PRICES: TermPrice[] = [
+  { months: 3, monthly: 135000 },
+  { months: 6, monthly: 120000 },
+  { months: 12, monthly: 105000 },
+];
+
 type PricingResponse = {
   ok: boolean;
   minSeats?: number;
   maxSeats?: number;
   terms?: number[];
   discounts?: SeatDiscount[];
+  termPrices?: TermPrice[];
   maxDevicesPerSeat?: number;
 };
 
@@ -67,6 +77,7 @@ export async function getCorporatePricing(): Promise<CorporatePricing> {
     maxSeats: live?.maxSeats ?? 500,
     terms: live?.terms?.length ? live.terms : [3, 6, 12],
     discounts: live?.discounts?.length ? live.discounts : FALLBACK_DISCOUNTS,
+    termPrices: live?.termPrices?.length ? live.termPrices : FALLBACK_TERM_PRICES,
     maxDevicesPerSeat: live?.maxDevicesPerSeat ?? info.maxDevices ?? 2,
   };
 }
@@ -76,6 +87,8 @@ export function discountFor(p: CorporatePricing, seats: number): number {
 }
 
 export function seatPrice(p: CorporatePricing, months: number): number {
+  const tp = p.termPrices?.find((t) => t.months === months);
+  if (tp && tp.monthly > 0) return tp.monthly * months;
   if (months >= 12 && p.yearly > 0) return p.yearly * Math.floor(months / 12) + p.monthly * (months % 12);
   return p.monthly * months;
 }
