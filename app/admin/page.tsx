@@ -36,6 +36,33 @@ const fmtDate = (s?: string) => (s ? new Date(s).toLocaleDateString("ru-RU") : "
 const fmtDT = (s?: string) => (s ? new Date(s).toLocaleString("ru-RU", { dateStyle: "short", timeStyle: "short" }) : "—");
 const som = (n: number) => new Intl.NumberFormat("ru-RU").format(n) + " сўм";
 
+// Ой бўйича филтр: сана → "YYYY-MM" (маҳаллий вақт бўйича), ва ўзбекча ой номи.
+const MONTHS_UZ = ["Январ", "Феврал", "Март", "Апрел", "Май", "Июн", "Июл", "Август", "Сентябр", "Октябр", "Ноябр", "Декабр"];
+const monthKey = (s?: string) => {
+  if (!s) return "";
+  const d = new Date(s);
+  if (isNaN(d.getTime())) return "";
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+};
+const monthLabel = (k: string) => {
+  const [y, m] = k.split("-");
+  return (MONTHS_UZ[Number(m) - 1] || k) + " " + y;
+};
+
+function MonthPicker({ value, onChange, dates }: { value: string; onChange: (v: string) => void; dates: (string | undefined)[] }) {
+  const months = useMemo(() => {
+    const set = new Set<string>();
+    for (const d of dates) { const k = monthKey(d); if (k) set.add(k); }
+    return Array.from(set).sort().reverse();
+  }, [dates]);
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
+      <option value="all">Барча ойлар</option>
+      {months.map((k) => <option key={k} value={k}>{monthLabel(k)}</option>)}
+    </select>
+  );
+}
+
 function statusOf(a: Account) {
   if (a.revoked) return { key: "revoked", label: "Блокланган" };
   const left = new Date(a.paidUntil).getTime() - Date.now();
@@ -58,6 +85,10 @@ export default function AdminPage() {
   const [sec, setSec] = useState<Security | null>(null);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("all");
+  const [monthUsers, setMonthUsers] = useState("all");
+  const [monthOrders, setMonthOrders] = useState("all");
+  const [monthFeedback, setMonthFeedback] = useState("all");
+  const [monthSec, setMonthSec] = useState("all");
   const [open, setOpen] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
 
@@ -113,6 +144,7 @@ export default function AdminPage() {
       .map((a) => ({ a, st: statusOf(a), last: a.devices.reduce((m, d) => Math.max(m, new Date(d.lastSeen).getTime()), 0) }))
       .filter(({ a, st }) => {
         if (term && !(a.email + " " + (a.phone || "") + " " + a.licenseKey + " " + a.devices.map((d) => d.id + " " + (d.name || "")).join(" ")).toLowerCase().includes(term)) return false;
+        if (monthUsers !== "all" && monthKey(a.createdAt) !== monthUsers) return false;
         const left = new Date(a.paidUntil).getTime() - Date.now();
         switch (filter) {
           case "trial": return st.key === "trial";
@@ -125,7 +157,20 @@ export default function AdminPage() {
         }
       })
       .sort((x, y) => y.last - x.last);
-  }, [accounts, q, filter]);
+  }, [accounts, q, filter, monthUsers]);
+
+  const ordersF = useMemo(
+    () => (monthOrders === "all" ? orders : orders.filter((o) => monthKey(o.createdAt) === monthOrders)),
+    [orders, monthOrders]
+  );
+  const feedbackF = useMemo(
+    () => (monthFeedback === "all" ? feedback : feedback.filter((f) => monthKey(f.createdAt) === monthFeedback)),
+    [feedback, monthFeedback]
+  );
+  const eventsF = useMemo(
+    () => (!sec ? [] : monthSec === "all" ? sec.events : sec.events.filter((e) => monthKey(e.at) === monthSec)),
+    [sec, monthSec]
+  );
 
   if (!authed) {
     return (
@@ -191,6 +236,7 @@ export default function AdminPage() {
               <option value="multi">3+ қурилма</option>
               <option value="revoked">Блокланган</option>
             </select>
+            <MonthPicker value={monthUsers} onChange={setMonthUsers} dates={accounts.map((a) => a.createdAt)} />
             <span className="adm-count">{rows.length} та</span>
           </div>
           <div className="adm-scroll">
@@ -240,26 +286,37 @@ export default function AdminPage() {
       )}
 
       {tab === "orders" && (
-        <div className="adm-scroll">
+        <section>
+          <div className="adm-tools">
+            <MonthPicker value={monthOrders} onChange={setMonthOrders} dates={orders.map((o) => o.createdAt)} />
+            <span className="adm-count">{ordersF.length} та</span>
+          </div>
+          <div className="adm-scroll">
           <table>
             <thead><tr><th>№</th><th>E-mail</th><th>Тариф</th><th>Сумма</th><th>Тизим</th><th>Ҳолат</th><th>Яратилган</th><th>Тўланган</th></tr></thead>
             <tbody>
-              {orders.map((o) => (
+              {ordersF.map((o) => (
                 <tr key={o.id}><td>{o.id}</td><td>{o.email}</td><td>{o.plan}</td><td>{som(o.amount)}</td><td>{o.provider}</td>
                   <td><span className={"adm-st " + (o.status === "paid" ? "paid" : o.status === "pending" ? "trial" : "expired")}>{o.status}</span></td>
                   <td>{fmtDT(o.createdAt)}</td><td>{fmtDT(o.paidAt)}</td></tr>
               ))}
             </tbody>
           </table>
-        </div>
+          </div>
+        </section>
       )}
 
       {tab === "feedback" && (
-        <div className="adm-scroll">
+        <section>
+          <div className="adm-tools">
+            <MonthPicker value={monthFeedback} onChange={setMonthFeedback} dates={feedback.map((f) => f.createdAt)} />
+            <span className="adm-count">{feedbackF.length} та</span>
+          </div>
+          <div className="adm-scroll">
           <table>
             <thead><tr><th>№</th><th>Сана</th><th>Тур</th><th>E-mail</th><th>Ҳолат</th><th>Версия / Revit</th><th>Асбоб</th><th>Матн</th><th>📎</th></tr></thead>
             <tbody>
-              {feedback.map((f) => (
+              {feedbackF.map((f) => (
                 <tr key={f.id}>
                   <td className="mono">F{f.id}</td>
                   <td>{fmtDT(f.createdAt)}</td>
@@ -272,10 +329,11 @@ export default function AdminPage() {
                   <td>{f.hasScreenshot ? "📎" : ""}</td>
                 </tr>
               ))}
-              {feedback.length === 0 && <tr><td colSpan={9}>Фидбек йўқ</td></tr>}
+              {feedbackF.length === 0 && <tr><td colSpan={9}>Фидбек йўқ</td></tr>}
             </tbody>
           </table>
-        </div>
+          </div>
+        </section>
       )}
       {tab === "security" && (
         <section className="adm-sec">
@@ -307,12 +365,16 @@ export default function AdminPage() {
               </table></div>
 
               <h3>Охирги ҳодисалар</h3>
+              <div className="adm-tools">
+                <MonthPicker value={monthSec} onChange={setMonthSec} dates={sec.events.map((e) => e.at)} />
+                <span className="adm-count">{eventsF.length} та</span>
+              </div>
               <div className="adm-scroll"><table>
                 <thead><tr><th>Вақт</th><th>Ҳодиса</th><th>IP</th><th>Қурилма</th><th>E-mail</th><th>Калит</th><th>Версия</th></tr></thead>
-                <tbody>{sec.events.map((e, i) => (
+                <tbody>{eventsF.map((e, i) => (
                   <tr key={i}><td>{fmtDT(e.at)}</td><td>{KIND[e.kind] || e.kind}</td><td className="mono">{e.ip}</td>
                     <td>{e.deviceName || ""} <span className="mono">{e.deviceId || ""}</span></td><td>{e.email || ""}</td><td className="mono">{e.key || ""}</td><td>{e.version || ""}</td></tr>
-                ))}{sec.events.length === 0 && <tr><td colSpan={7}>Ҳодиса йўқ</td></tr>}</tbody>
+                ))}{eventsF.length === 0 && <tr><td colSpan={7}>Ҳодиса йўқ</td></tr>}</tbody>
               </table></div>
               <p className="adm-hint">Ҳодисалар: мавжуд бўлмаган/блокланган калит, қурилма чегараси, трайлни қайта олиш, сохта сўров, админ токен хатолари. Админга 3 ва 8 марта хато токен киритилса, Telegram'га хабар келади.</p>
             </>
