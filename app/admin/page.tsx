@@ -17,7 +17,7 @@ type Feedback = {
   licenseStatus?: string; pluginVersion?: string; revitVersion?: string; deviceName?: string; hasScreenshot: boolean;
 };
 type Stats = Record<string, any>;
-type SecEvent = { at: string; kind: string; ip: string; deviceId?: string; deviceName?: string; email?: string; key?: string; version?: string };
+type SecEvent = { at: string; kind: string; ip: string; deviceId?: string; deviceName?: string; email?: string; key?: string; version?: string; count?: number };
 type Security = {
   events: SecEvent[];
   ips: { ip: string; count: number; badKeys: number; admin: number; devices: number; last: string }[];
@@ -391,13 +391,15 @@ export default function AdminPage() {
                 <span className="adm-count">{eventsF.length} та</span>
               </div>
               <div className="adm-scroll"><table>
-                <thead><tr><th>Вақт</th><th>Ҳодиса</th><th>IP</th><th>Қурилма</th><th>E-mail</th><th>Калит</th><th>Версия</th></tr></thead>
+                <thead><tr><th>Вақт</th><th>Ҳодиса</th><th>Такрор</th><th>IP</th><th>Қурилма</th><th>E-mail</th><th>Калит</th><th>Версия</th></tr></thead>
                 <tbody>{eventsF.map((e, i) => (
-                  <tr key={i}><td>{fmtDT(e.at)}</td><td>{KIND[e.kind] || e.kind}</td><td className="mono">{e.ip}</td>
+                  <tr key={i}><td>{fmtDT(e.at)}</td><td>{KIND[e.kind] || e.kind}</td>
+                    <td className={(e.count || 1) >= 10 ? "warn" : ""}>{(e.count || 1) > 1 ? "×" + e.count : ""}</td>
+                    <td className="mono">{e.ip}</td>
                     <td>{e.deviceName || ""} <span className="mono">{e.deviceId || ""}</span></td><td>{e.email || ""}</td><td className="mono">{e.key || ""}</td><td>{e.version || ""}</td></tr>
-                ))}{eventsF.length === 0 && <tr><td colSpan={7}>Ҳодиса йўқ</td></tr>}</tbody>
+                ))}{eventsF.length === 0 && <tr><td colSpan={8}>Ҳодиса йўқ</td></tr>}</tbody>
               </table></div>
-              <p className="adm-hint">Ҳодисалар: мавжуд бўлмаган/блокланган калит, қурилма чегараси, трайлни қайта олиш, сохта сўров, админ токен хатолари. Админга 3 ва 8 марта хато токен киритилса, Telegram'га хабар келади.</p>
+              <p className="adm-hint">Ҳодисалар: мавжуд бўлмаган/блокланган калит, қурилма чегараси, трайлни қайта олиш, сохта сўров, админ токен хатолари. Бир хил ҳодиса бир соат ичида такрорланса битта қаторга йиғилади — «Такрор» устуни сонини кўрсатади. Админга 3 ва 8 марта хато токен киритилса, Telegram'га хабар келади.</p>
             </>
           )}
         </section>
