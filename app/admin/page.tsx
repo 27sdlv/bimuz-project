@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useCallback, useMemo, useState } from "react";
+import SeriesChart, { type Series } from "./SeriesChart";
 
 const SERVER = "https://license.bimuz.uz";
 const DAY = 86400000;
@@ -22,6 +23,8 @@ type Security = {
   ips: { ip: string; count: number; badKeys: number; admin: number; devices: number; last: string }[];
   trialAbuse: { deviceId: string; deviceName?: string; attempts: number; emails: string[]; last: string }[];
   sharedDevices: { deviceId: string; emails: string[] }[];
+  latestVersion?: string | null;
+  outdated?: { email: string; deviceId: string; deviceName?: string; version: string; lastSeen: string; ip?: string }[];
 };
 const KIND: Record<string, string> = {
   "admin:bad_token": "Админ: нотўғри токен", "admin:blocked": "Админ: IP блокланган",
@@ -30,6 +33,9 @@ const KIND: Record<string, string> = {
   "activate:device_limit": "Қурилма чегараси ошди", "trial:trial_used": "Трайл қайта уриниш",
   "deactivate:removal_limit": "Қурилма алмаштириш чегараси", "refresh:device_removed": "Чиқарилган қурилма",
   "activate:bad_request": "Сохта сўров (ID йўқ)", "refresh:bad_request": "Сохта сўров (ID йўқ)", "trial:bad_request": "Сохта сўров (ID йўқ)",
+  "recover:not_found": "Лицензиясиз компьютер (recover)", "recover:rate_limited": "Чегара ошди (recover)",
+  "activate:rate_limited": "Чегара ошди (activate)", "trial:rate_limited": "Чегара ошди (trial)",
+  "login:rate_limited": "Чегара ошди (login)", "login:not_found": "Логин: топилмади",
 };
 
 const fmtDate = (s?: string) => (s ? new Date(s).toLocaleDateString("ru-RU") : "—");
@@ -83,6 +89,7 @@ export default function AdminPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [feedback, setFeedback] = useState<Feedback[]>([]);
   const [sec, setSec] = useState<Security | null>(null);
+  const [series, setSeries] = useState<Series | null>(null);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("all");
   const [monthUsers, setMonthUsers] = useState("all");
@@ -117,6 +124,7 @@ export default function AdminPage() {
       setFeedback(f);
       setAuthed(true);
       try { setSec(await call("/admin/security")); } catch { setSec(null); }
+      try { setSeries(await call("/admin/series?days=400")); } catch { setSeries(null); }
     } catch (e: any) {
       setErr(e.message === "Failed to fetch" ? "Серверга уланиб бўлмади (CORS ёки тармоқ)" : e.message);
     } finally {
@@ -219,6 +227,9 @@ export default function AdminPage() {
           <div className="adm-card wide">
             <div className="adm-card-l">Плагин версиялари (7 кун)</div>
             <div className="adm-vers">{Object.entries(S.versions7d || {}).sort((a, b) => (b[1] as number) - (a[1] as number)).map(([v, n]) => <span key={v}>{v}: <b>{n as number}</b></span>)}</div>
+          </div>
+          <div className="adm-card-plain wide">
+            {series ? <SeriesChart data={series} /> : <p className="adm-hint">Диаграмма маълумоти серверда ҳали йўқ (серверни янгиланг).</p>}
           </div>
         </section>
       )}
@@ -364,6 +375,16 @@ export default function AdminPage() {
                 ))}{sec.sharedDevices.length === 0 && <tr><td colSpan={2}>Йўқ</td></tr>}</tbody>
               </table></div>
 
+              <h3>Эскирган версияда ишлаётган компьютерлар{sec.latestVersion ? " (энг янгиси " + sec.latestVersion + ")" : ""}</h3>
+              <div className="adm-scroll"><table>
+                <thead><tr><th>Версия</th><th>E-mail</th><th>Қурилма</th><th>ID</th><th>IP</th><th>Охирги кириш</th></tr></thead>
+                <tbody>{(sec.outdated || []).map((x) => (
+                  <tr key={x.deviceId + x.email}><td className="warn">{x.version}</td><td>{x.email}</td><td>{x.deviceName || "—"}</td>
+                    <td className="mono">{x.deviceId}</td><td className="mono">{x.ip || "—"}</td><td>{fmtDT(x.lastSeen)}</td></tr>
+                ))}{(sec.outdated || []).length === 0 && <tr><td colSpan={6}>Ҳаммаси энг янги версияда</td></tr>}</tbody>
+              </table></div>
+              <p className="adm-hint">Сайтдан юклаб олган одам доим энг янги версияни олади. Эски версия — ўрнатувчи қўлма-қўл берилганининг белгиси.</p>
+
               <h3>Охирги ҳодисалар</h3>
               <div className="adm-tools">
                 <MonthPicker value={monthSec} onChange={setMonthSec} dates={sec.events.map((e) => e.at)} />
@@ -404,6 +425,7 @@ const CSS = `
 .adm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
 .adm-card{background:#17212c;border:1px solid #243447;border-radius:10px;padding:14px 16px}
 .adm-card.wide{grid-column:1/-1}
+.adm-card-plain{grid-column:1/-1}
 .adm-card-v{font-size:26px;font-weight:700}.adm-card-l{color:#9fb0c1;margin-top:2px}.adm-card-s{color:#7d8ea0;font-size:12px;margin-top:4px}
 .adm-vers{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
 .adm-tools{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}.adm-tools input{flex:1;min-width:220px}.adm-count{color:#8a9aab}
