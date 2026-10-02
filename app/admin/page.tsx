@@ -2,6 +2,7 @@
 
 import { Fragment, useCallback, useMemo, useState } from "react";
 import SeriesChart, { type Series } from "./SeriesChart";
+import GeoMap, { type GeoReport } from "./GeoMap";
 
 const SERVER = "https://license.bimuz.uz";
 const DAY = 86400000;
@@ -90,6 +91,8 @@ export default function AdminPage() {
   const [feedback, setFeedback] = useState<Feedback[]>([]);
   const [sec, setSec] = useState<Security | null>(null);
   const [series, setSeries] = useState<Series | null>(null);
+  const [geo, setGeo] = useState<GeoReport | null>(null);
+  const [geoDays, setGeoDays] = useState(30);
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState("all");
   const [monthUsers, setMonthUsers] = useState("all");
@@ -125,11 +128,18 @@ export default function AdminPage() {
       setAuthed(true);
       try { setSec(await call("/admin/security")); } catch { setSec(null); }
       try { setSeries(await call("/admin/series?days=400")); } catch { setSeries(null); }
+      try { setGeo(await call("/admin/geo?days=" + geoDays)); } catch { setGeo(null); }
     } catch (e: any) {
       setErr(e.message === "Failed to fetch" ? "Серверга уланиб бўлмади (CORS ёки тармоқ)" : e.message);
     } finally {
       setBusy(false);
     }
+  }, [call, geoDays]);
+
+  const loadGeo = useCallback(async (d: number) => {
+    setGeoDays(d);
+    setBusy(true);
+    try { setGeo(await call("/admin/geo?days=" + d)); } catch { setGeo(null); } finally { setBusy(false); }
   }, [call]);
 
   const act = async (path: string, body: unknown, text: string) => {
@@ -230,6 +240,9 @@ export default function AdminPage() {
           </div>
           <div className="adm-card-plain wide">
             {series ? <SeriesChart data={series} /> : <p className="adm-hint">Диаграмма маълумоти серверда ҳали йўқ (серверни янгиланг).</p>}
+          </div>
+          <div className="adm-card-plain wide">
+            {geo ? <GeoMap data={geo} days={geoDays} onDays={loadGeo} busy={busy} /> : <p className="adm-hint">География маълумоти серверда ҳали йўқ (серверни янгиланг).</p>}
           </div>
         </section>
       )}
